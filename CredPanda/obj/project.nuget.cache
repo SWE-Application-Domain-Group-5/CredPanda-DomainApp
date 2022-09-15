@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "StT8ROtNxZ8knzxreF8J8wcSrab/rvovg+6ou9/v4pJxEmLitXE0XEOvbEnx7SVQF8m8Sq/hP1bJsC5EAgO8+Q==",
+  "dgSpecHash": "3RQQmEJtsMQ01h+vHI+gzIETf0TAvxIrXTW2RTrSVINJOW6OKiIrJQPtyrOIf/tSmKxx+qBgJ1Rufm1iliCB4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda\\CredPanda.csproj",
+  "projectFilePath": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda-DomainApp\\CredPanda\\CredPanda.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

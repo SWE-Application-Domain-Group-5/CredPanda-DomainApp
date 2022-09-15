@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda\\CredPanda.csproj",
+      "projectUniqueName": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda-DomainApp\\CredPanda\\CredPanda.csproj",
       "projectName": "CredPanda",
-      "projectPath": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda\\CredPanda.csproj",
+      "projectPath": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda-DomainApp\\CredPanda\\CredPanda.csproj",
       "packagesPath": "C:\\Users\\elija\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda\\obj\\",
+      "outputPath": "C:\\Users\\elija\\Documents\\GitHub\\CredPanda-DomainApp\\CredPanda\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\elija\\AppData\\Roaming\\NuGet\\NuGet.Config",
