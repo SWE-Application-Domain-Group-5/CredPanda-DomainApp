@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CredPanda_Financial_Application.Models;
 
 namespace CredPanda_Financial_Application.Data
 {
@@ -9,5 +10,6 @@ namespace CredPanda_Financial_Application.Data
             : base(options)
         {
         }
+        public DbSet<CredPanda_Financial_Application.Models.User> User { get; set; }
     }
 }
