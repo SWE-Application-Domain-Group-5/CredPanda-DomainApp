@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-CredPanda_Financial_Application-DFE4B997-57F3-4EDB-9520-152A789856BB")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("CredPanda Financial Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
