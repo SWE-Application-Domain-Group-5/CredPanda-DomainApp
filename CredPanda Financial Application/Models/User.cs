@@ -6,12 +6,14 @@ namespace CredPanda_Financial_Application.Models
     public class User
     {
         public int Id { get; set; }
+        public bool active { get; set; } 
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string role { get; set; }
         public string dateOfBirth { get; set; }
 
         public string dateJoined;
+        public string email { get; set; }   
 
         //unpublic and unmap these later
         public string username;
