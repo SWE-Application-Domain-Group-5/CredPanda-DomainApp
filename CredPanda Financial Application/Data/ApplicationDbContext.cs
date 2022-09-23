@@ -11,5 +11,6 @@ namespace CredPanda_Financial_Application.Data
         {
         }
         public DbSet<CredPanda_Financial_Application.Models.User> User { get; set; }
+        public DbSet<CredPanda_Financial_Application.Models.DatabaseRole> DatabaseRole { get; set; }
     }
 }

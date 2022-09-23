@@ -12,13 +12,15 @@ namespace CredPanda_Financial_Application.Controllers
         public AdminController(RoleManager<IdentityRole> roleManager)
         {
             this.roleManager = roleManager;
+            
         }
 
-        public IActionResult Index() =>
-               Content("Administrator");
+        public IActionResult Index()
+        {
+            return View();
+        }
         public IActionResult Create()
         {
-
             return View();
         }
         [HttpPost]
