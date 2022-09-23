@@ -12,6 +12,7 @@ namespace CredPanda_Financial_Application.Controllers
         public AdminController(RoleManager<IdentityRole> roleManager)
         {
             this.roleManager = roleManager;
+            //roleManager.AddtoRoleASync(user, "Administrator").Wait();
             
         }
 
