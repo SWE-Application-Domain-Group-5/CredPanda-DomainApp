@@ -17,4 +17,16 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\CredPandaLogo.png" />
+    <Content Remove="wwwroot\images\gorilla.jpg" />
+    <Content Remove="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\CredPandaLogo.png" />
+    <None Include="wwwroot\images\gorilla.jpg" />
+  </ItemGroup>
 </Project>
