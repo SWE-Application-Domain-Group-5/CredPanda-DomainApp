@@ -3,14 +3,6 @@ using System.Text;
 
 namespace CredPanda_Financial_Application.Models
 {
-    /* Role enumerator to help with identifying users
-    public enum Roles
-    {
-        administrator,
-        manager,
-        accountant
-    }
-    */
     public class User
     {
         public int Id { get; set; }
@@ -18,9 +10,6 @@ namespace CredPanda_Financial_Application.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string role { get; set; }
-
-        //Roles Enumerator. implement later
-        //Roles roles { get; set; }
         public string dateOfBirth { get; set; }
 
         public string dateJoined;

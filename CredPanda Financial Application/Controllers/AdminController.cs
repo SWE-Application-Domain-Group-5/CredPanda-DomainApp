@@ -4,19 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CredPanda_Financial_Application.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
-
+        
         public AdminController(RoleManager<IdentityRole> roleManager)
         {
             this.roleManager = roleManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() =>
+               Content("Administrator");
         public IActionResult Create()
         {
 
