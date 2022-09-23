@@ -30,10 +30,6 @@ namespace CredPanda_Financial_Application.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("dateJoined")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("dateOfBirth")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

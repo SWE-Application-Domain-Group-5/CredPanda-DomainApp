@@ -18,7 +18,6 @@ namespace CredPanda_Financial_Application.Data.Migrations
                     lastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     dateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    dateJoined = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false)
