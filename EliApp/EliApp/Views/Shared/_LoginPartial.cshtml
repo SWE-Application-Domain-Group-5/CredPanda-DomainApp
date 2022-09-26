@@ -2,10 +2,17 @@
 @using EliApp.Areas.Identity.Data
 @inject SignInManager<EliAppUser> SignInManager
 @inject UserManager<EliAppUser> UserManager
-
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var profilepicName = user.ProfilePicture;
+    var profilePicPath = "~/uploads/" + profilepicName ?? "blankProfilePic.jpg";
+}
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    <li class="nav-item">
+        <img class="w3-circle" src="@profilePicPath" height="60" width="auto" asp-append-version="true" />
+    </li>
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>

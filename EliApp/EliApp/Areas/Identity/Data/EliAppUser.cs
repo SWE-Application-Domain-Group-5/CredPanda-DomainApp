@@ -16,23 +16,23 @@ public class EliAppUser : IdentityUser
     public string? Address { get; set; }
     //Get user's Date of birth
     [PersonalData]
-    public DateTime DOB { get; set; }
+    public DateTime? DOB { get; set; }
     [PersonalData]
-    public Nullable<byte[]> ProfilePicture { get; set; }
+    public  string? ProfilePicture { get; set; }
     [PersonalData]
     //Get user's date of registration
     public DateTime RegisterDate { get; set; }
     //Get user's generated username
     [PersonalData]
     public string? GeneratedUserName { get; set; }
-    /*
+    
     //Get user's activation state
     [PersonalData]
-    public bool? isActive { get; set; }
+    public bool isActive { get; set; }
     //Get user's List of old passwords
-    [PersonalData]
-    public List<string>? oldPasswords { get; set; } 
-    */
+    //[PersonalData]
+    //public List<string>? oldPasswords { get; set; } 
+    
 }
 
 //This is basically a way to add extra attributes to IdentityUser - Eli

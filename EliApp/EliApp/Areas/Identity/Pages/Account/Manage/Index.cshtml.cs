@@ -29,6 +29,8 @@ namespace EliApp.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+        public string profilePicPath { get; set; }  
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -78,10 +80,10 @@ namespace EliApp.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "Birth Date")]
             [DataType(DataType.Date)]
-            public DateTime DOB { get; set; }
+            public DateTime? DOB { get; set; }
 
             [Column(TypeName = "Profile Picture")]
-            public byte[] ProfilePicture { get; set; }
+            public String ProfilePicture { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
@@ -103,6 +105,7 @@ namespace EliApp.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            profilePicPath = "~/uploads/" + user.ProfilePicture ?? "blankProfilePic.jpg";
 
             Username = userName;
 
@@ -116,7 +119,7 @@ namespace EliApp.Areas.Identity.Pages.Account.Manage
                 RegisterDate = user.RegisterDate,
                 GeneratedUserName = user.GeneratedUserName,
                 PhoneNumber = phoneNumber,
-                //isActive = user.isActive
+                isActive = user.isActive
             };
         }
 

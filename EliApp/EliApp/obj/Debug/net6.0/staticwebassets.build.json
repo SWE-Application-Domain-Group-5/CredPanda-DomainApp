@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3A+8jLUfFB+AUePUYWEJV+8O9LRXjS9ecBjkusAIVBk=",
+  "Hash": "dRykv5qjkjuDnDxB49a/KlNFfUhgSzwoQdTzt/4GCmQ=",
   "Source": "EliApp",
   "BasePath": "_content/EliApp",
   "Mode": "Default",
@@ -1105,6 +1105,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\wwwroot\\images\\CredPanda Logo.png",
+      "SourceId": "EliApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\wwwroot\\",
+      "BasePath": "_content/EliApp",
+      "RelativePath": "images/CredPanda Logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\CredPanda Logo.png"
+    },
+    {
       "Identity": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\wwwroot\\images\\Gary Emoji.png",
       "SourceId": "EliApp",
       "SourceType": "Discovered",
@@ -2106,6 +2123,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\wwwroot\\uploads\\blankProfilePic.jpg",
+      "SourceId": "EliApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\wwwroot\\",
+      "BasePath": "_content/EliApp",
+      "RelativePath": "uploads/blankProfilePic.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\blankProfilePic.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\wwwroot\\uploads\\Jotaro.png",
+      "SourceId": "EliApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\wwwroot\\",
+      "BasePath": "_content/EliApp",
+      "RelativePath": "uploads/Jotaro.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Jotaro.png"
     }
   ]
 }

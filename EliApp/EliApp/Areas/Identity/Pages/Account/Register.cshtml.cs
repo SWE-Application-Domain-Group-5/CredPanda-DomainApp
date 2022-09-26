@@ -33,12 +33,14 @@ namespace EliApp.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager; //added rolemanager - Eli
+        private IWebHostEnvironment _environment; // added
         public RegisterModel(
         UserManager<EliAppUser> userManager,
         IUserStore<EliAppUser> userStore,
         SignInManager<EliAppUser> signInManager,
         ILogger<RegisterModel> logger,
         RoleManager<IdentityRole> roleManager, //rolemanager - Eli
+        IWebHostEnvironment environment, // added
         IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -47,8 +49,12 @@ namespace EliApp.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _roleManager = roleManager; //role manager - Eli
+            _environment = environment; // added
             _emailSender = emailSender;
         }
+
+        [BindProperty]
+        public IFormFile Upload { get; set; } // added
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -97,7 +103,7 @@ namespace EliApp.Areas.Identity.Pages.Account
             public DateTime DOB { get; set; }
 
             [Column(TypeName = "Profile Picture")]
-            public byte[] ProfilePicture { get; set; }
+            public string ProfilePicture { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -154,9 +160,16 @@ namespace EliApp.Areas.Identity.Pages.Account
                 user.Address = Input.Address;
                 user.DOB = Input.DOB;
                 user.RegisterDate = DateTime.Now;
-                user.ProfilePicture = Input.ProfilePicture;
+
+                var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await Upload.CopyToAsync(fileStream);
+                }
+                user.ProfilePicture = Upload.FileName;
+
                 user.Email = Input.Email;
-                //user.activated = false; //added user's activation status, default is false - Rasul
+                user.isActive = false; //added user's activation status, default is false - Rasul
                 
                 #region Generate Username
                 //Take the first letter from the first name
