@@ -8,121 +8,129 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EliApp
 build_property.RootNamespace = EliApp
-build_property.ProjectDir = C:\Users\elija\source\repos\EliApp\EliApp\
+build_property.ProjectDir = C:\Users\darkk\Documents\School\KSU\Year 4\SWE Application Domain\Software Project\CredPanda-DomainApp\EliApp\EliApp\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\elija\source\repos\EliApp\EliApp
+build_property.MSBuildProjectDirectory = C:\Users\darkk\Documents\School\KSU\Year 4\SWE Application Domain\Software Project\CredPanda-DomainApp\EliApp\EliApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/Account/Manage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Home/Index.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Home/Privacy.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Items/Create.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Items/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Items/Delete.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Items/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Items/Details.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Items/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Items/Edit.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Items/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Items/Index.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Items/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Role/CreateRole.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Role/CreateRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxDcmVhdGVSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Role/EditRole.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Role/EditRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxFZGl0Um9sZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Role/EditUsersInRole.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Role/EditUsersInRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxFZGl0VXNlcnNJblJvbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Role/ListRoles.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Role/ListRoles.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxMaXN0Um9sZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Shared/Error.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/User/Index.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/User/EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0VXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/_ViewImports.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/User/ListUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMaXN0VXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/_ViewStart.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/elija/source/repos/EliApp/EliApp/Views/Shared/_Layout.cshtml]
+[C:/Users/darkk/Documents/School/KSU/Year 4/SWE Application Domain/Software Project/CredPanda-DomainApp/EliApp/EliApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-w6d8vco6kx

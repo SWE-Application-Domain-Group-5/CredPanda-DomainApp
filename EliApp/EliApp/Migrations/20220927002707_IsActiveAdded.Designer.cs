@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EliApp.Migrations
 {
     [DbContext(typeof(EliAppContext))]
-    [Migration("20220926203358_IsActiveAdded")]
+    [Migration("20220927002707_IsActiveAdded")]
     partial class IsActiveAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
