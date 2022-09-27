@@ -10296,11 +10296,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< Updated upstream:EliApp/EliApp/obj/project.assets.json
       "projectUniqueName": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\EliApp.csproj",
       "projectName": "EliApp",
       "projectPath": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\EliApp.csproj",
       "packagesPath": "C:\\Users\\elija\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\CredPanda Financial Application.csproj",
+      "projectName": "CredPanda Financial Application",
+      "projectPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\CredPanda Financial Application.csproj",
+      "packagesPath": "C:\\Users\\darkk\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\obj\\",
+>>>>>>> Stashed changes:CredPanda Financial Application/obj/project.assets.json
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\elija\\AppData\\Roaming\\NuGet\\NuGet.Config",

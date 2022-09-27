@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< Updated upstream:EliApp/EliApp/obj/project.nuget.cache
   "dgSpecHash": "o/+a0/iBw5p8t/CtE9VileXcmLOs8+65JSsn+tyntmVCV7rUmf0EI1PkHoSr9Ifo4XkVMxVu21U2zDrErFsFfA==",
   "success": true,
   "projectFilePath": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\EliApp.csproj",
+=======
+  "dgSpecHash": "xss9AGUltiNepqVuoxoc1kTXfkQ/F1ohCnKarUJ19E1jR5h9DQPOF1HyyAL7UZaWJL0olt6Nb0AZAmC6tiz+iQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\CredPanda Financial Application.csproj",
+>>>>>>> Stashed changes:CredPanda Financial Application/obj/project.nuget.cache
   "expectedPackageFiles": [
     "C:\\Users\\elija\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\elija\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
