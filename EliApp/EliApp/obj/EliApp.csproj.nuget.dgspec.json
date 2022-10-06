@@ -1,24 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\EliApp\\EliApp\\EliApp.csproj": {}
+<<<<<<< Updated upstream:EliApp/EliApp/obj/EliApp.csproj.nuget.dgspec.json
+    "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\EliApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\EliApp\\EliApp\\EliApp.csproj": {
+    "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\EliApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\EliApp\\EliApp\\EliApp.csproj",
+        "projectUniqueName": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\EliApp.csproj",
         "projectName": "EliApp",
-        "projectPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\EliApp\\EliApp\\EliApp.csproj",
+        "projectPath": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\EliApp.csproj",
+        "packagesPath": "C:\\Users\\elija\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\elija\\source\\repos\\EliApp\\EliApp\\obj\\",
+=======
+    "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\CredPanda Financial Application.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\CredPanda Financial Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\CredPanda Financial Application.csproj",
+        "projectName": "CredPanda Financial Application",
+        "projectPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\CredPanda Financial Application.csproj",
         "packagesPath": "C:\\Users\\darkk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\EliApp\\EliApp\\obj\\",
+        "outputPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\Temp Repository\\CredPanda-DomainApp\\CredPanda Financial Application\\obj\\",
+>>>>>>> Stashed changes:CredPanda Financial Application/obj/CredPanda Financial Application.csproj.nuget.dgspec.json
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\darkk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\elija\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
