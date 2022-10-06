@@ -10297,11 +10297,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\darkk\\Desktop\\CredPanda-Domain\\EliApp\\EliApp.csproj",
+      "projectUniqueName": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\CredPanda-DomainApp\\EliApp\\EliApp.csproj",
       "projectName": "EliApp",
-      "projectPath": "C:\\Users\\darkk\\Desktop\\CredPanda-Domain\\EliApp\\EliApp.csproj",
+      "projectPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\CredPanda-DomainApp\\EliApp\\EliApp.csproj",
       "packagesPath": "C:\\Users\\darkk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\darkk\\Desktop\\CredPanda-Domain\\EliApp\\obj\\",
+      "outputPath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\CredPanda-DomainApp\\EliApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

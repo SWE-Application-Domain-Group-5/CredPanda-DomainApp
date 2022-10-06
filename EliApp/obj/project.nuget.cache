@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LrUp6zBCnat623nsOkXmwu1h7RakcQ4akMWdXsl/y5tgGBLuhD9tyKpRwseyuqbDUkrDSZn34CuY72d15E3jyQ==",
+  "dgSpecHash": "xCzVXyiVstz8zKi9W1iVsKBtYiQm/pQDXL+mxU03jKy6s8Ny/tPPShRAzK83zqxvin9N9kWZ5fqSIk9le6RQZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\darkk\\Desktop\\CredPanda-Domain\\EliApp\\EliApp.csproj",
+  "projectFilePath": "C:\\Users\\darkk\\Documents\\School\\KSU\\Year 4\\SWE Application Domain\\Software Project\\CredPanda-DomainApp\\CredPanda-DomainApp\\EliApp\\EliApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\darkk\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\darkk\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
