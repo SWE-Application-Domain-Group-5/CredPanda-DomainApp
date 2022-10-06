@@ -1,11 +1,14 @@
-#Ignore Files in FileContentIndex Folder#
+#Ignore .vsdix files#
+*.vsidx
 
-*\.vs\FileContentIndex
+#Ignore ProjectEvaluation Folder#
+EliApp/.vs/ProjectEvaluation
 
 #Ignore v17 directory#
-*\EliApp\v17
+*/EliApp/v17
 
 
 #Ignore obj directory#
+*/EliApp/obj
 
-*\EliApp\obj
+EliApp/.vs/EliApp/v17/.suo
