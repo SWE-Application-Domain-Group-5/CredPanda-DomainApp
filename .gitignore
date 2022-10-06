@@ -1,0 +1,11 @@
+#Ignore Files in FileContentIndex Folder#
+
+*\.vs\FileContentIndex
+
+#Ignore v17 directory#
+*\EliApp\v17
+
+
+#Ignore obj directory#
+
+*\EliApp\obj
