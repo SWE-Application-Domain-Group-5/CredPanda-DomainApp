@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EliApp.Areas.Identity.Data;
 
@@ -18,7 +19,7 @@ public class EliAppUser : IdentityUser
     [PersonalData]
     public DateTime? DOB { get; set; }
     [PersonalData]
-    public  string? ProfilePicture { get; set; }
+    public string? ProfilePicture { get; set; }
     [PersonalData]
     //Get user's date of registration
     public DateTime RegisterDate { get; set; }
@@ -29,6 +30,7 @@ public class EliAppUser : IdentityUser
     //Get user's activation state
     [PersonalData]
     public bool isActive { get; set; }
+    
     //Get user's List of old passwords
     //[PersonalData]
     //public List<string>? oldPasswords { get; set; } 
