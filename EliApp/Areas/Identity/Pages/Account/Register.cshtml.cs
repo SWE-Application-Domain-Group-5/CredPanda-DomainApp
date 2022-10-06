@@ -161,7 +161,6 @@ namespace EliApp.Areas.Identity.Pages.Account
                 user.DOB = Input.DOB;
                 user.RegisterDate = DateTime.Now;
 
-                //Create path name for profile picture
                 var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
                 using (var fileStream = new FileStream(file, FileMode.Create))
                 {
@@ -170,7 +169,7 @@ namespace EliApp.Areas.Identity.Pages.Account
                 user.ProfilePicture = Upload.FileName;
 
                 user.Email = Input.Email;
-                user.isActive = false; //added user's activation status, default is false - Rasul
+                user.isActive = true; //added user's activation status, default is false - Rasul
                 
                 #region Generate Username
                 //Take the first letter from the first name

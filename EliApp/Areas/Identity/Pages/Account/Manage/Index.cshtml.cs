@@ -96,8 +96,6 @@ namespace EliApp.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             [Display(Name = "Generated UserName")]
             public string GeneratedUserName { get; set; }
-
-            public bool IsAdmin { get; set; }
             public bool isActive { get; set; }
         }
 

@@ -20,13 +20,13 @@ namespace EliApp.Controllers
         {
             _context = context;
         }
-        [Authorize]
+
         // GET: Items
         public async Task<IActionResult> Index()
         {
               return View(await _context.Item.ToListAsync());
         }
-        [Authorize(Roles = "Administrator,Manager")]
+
         // GET: Items/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,7 +45,7 @@ namespace EliApp.Controllers
             return View(item);
         }
 
-        [Authorize(Roles = "Administrator,Manager")] //only admins can use this - Eli
+        [Authorize(Roles = "Administrator")] //only admins can use this - Eli
         // GET: Items/Create
         public IActionResult Create()
         {
@@ -55,7 +55,7 @@ namespace EliApp.Controllers
         // POST: Items/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator,Manager")]
+        [Authorize(Roles = "Administrator")] // only admins
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price")] Item item)
@@ -70,7 +70,7 @@ namespace EliApp.Controllers
         }
 
         // GET: Items/Edit/5
-        [Authorize(Roles = "Administrator,Manager")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Item == null)
@@ -89,7 +89,7 @@ namespace EliApp.Controllers
         // POST: Items/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator,Manager")]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price")] Item item)
@@ -123,7 +123,7 @@ namespace EliApp.Controllers
         }
 
         // GET: Items/Delete/5
-        [Authorize(Roles = "Administrator,Manager")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Item == null)
@@ -142,7 +142,7 @@ namespace EliApp.Controllers
         }
 
         // POST: Items/Delete/5
-        [Authorize(Roles = "Administrator,Manager")]
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -3,13 +3,15 @@
 @inject SignInManager<EliAppUser> SignInManager
 @inject UserManager<EliAppUser> UserManager
 @{
-    var user = await UserManager.GetUserAsync(User);     
+    var user = await UserManager.GetUserAsync(User); 
 }
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
+@if (SignInManager.IsSignedIn(User) && user != null)
+{   
+    //had to move this due to errors when user was null - Rasul
     var profilepicName = user.ProfilePicture;
     var profilePicPath = "~/uploads/" + profilepicName ?? "blankProfilePic.jpg";
+
     <li class="nav-item">
         <img class="w3-circle" src="@profilePicPath" height="60" width="auto" asp-append-version="true" />
     </li>
