@@ -73,9 +73,4 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
-.vs/EliApp/DesignTimeBuild/.dtbcache.v2
-.vs/EliApp/v17/.futdcache.v2
-.vs/EliApp/v17/.suo
-.vs/ProjectEvaluation/eliapp.metadata.v5.1
-.vs/ProjectEvaluation/eliapp.projects.v5.1
-EliApp/obj/staticwebassets.pack.sentinel
+.vs/**
