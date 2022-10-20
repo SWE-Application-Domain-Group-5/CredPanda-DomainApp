@@ -22,4 +22,6 @@ public class EliAppContext : IdentityDbContext<EliAppUser>
     }
 
     public DbSet<EliApp.Models.Item> Item { get; set; }
+
+    public DbSet<EliApp.Models.AccountModel> AccountModel { get; set; }
 }
