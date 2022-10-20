@@ -28,8 +28,8 @@
 					<a asp-action="EditUser" asp-controller="user"
 					asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
 					@*Theese are the buttons for user activation and deactivation*@
-					<button asp-action="ActivateUser" asp-route-id="@user.Id" type="submit" class="btn btn-primary"  disabled = "disabled">Activate User</button>
-					<button asp-action="DeactivateUser" asp-route-id="@user.Id" type="submit" class="btn btn-danger">Delete User</button>
+					<button asp-action="ActivateUser" asp-route-id="@user.Id" type="submit" class="btn btn-primary">Activate User</button>
+					<button asp-action="DeactivateUser" asp-route-id="@user.Id" type="submit" class="btn btn-danger">Deactivate User</button>
 				</form>
 			</div>
 		</div>

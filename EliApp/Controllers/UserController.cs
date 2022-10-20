@@ -26,20 +26,17 @@ namespace EliApp.Controllers
         {
             var user = await userManager.FindByIdAsync(id);
 
-            if (user == null)
+            if (user != null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
-                return View("NotFound");
+                user.isActive = true;
+                userManager.UpdateAsync(user);
+                return RedirectToAction("ListUsers");
+                //return View("ListUsers");
             }
             else
             {
-                user.isActive = true;
-
-                if (user.isActive)
-                {
-                    return RedirectToAction("ListUsers");
-                }
-                return View("ListUsers");
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return View("NotFound");
             }
         }
 
@@ -48,20 +45,18 @@ namespace EliApp.Controllers
         {
             var user = await userManager.FindByIdAsync(id);
 
-            if (user == null)
+            if (user != null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
-                return View("NotFound");
+                //if(user.isActive)
+                user.isActive = false;
+                await userManager.UpdateAsync(user);
+
+                return RedirectToAction("ListUsers");
             }
             else
             {
-                user.isActive = false;
-
-                if (!user.isActive)
-                {
-                    return RedirectToAction("ListUsers");
-                }
-                return View("ListUsers");
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return View("NotFound");
             }
         }
 
@@ -109,7 +104,7 @@ namespace EliApp.Controllers
                 return View("NotFound");
             }
 
-            var userClaims = await userManager.GetClaimsAsync(user);
+            //var userClaims = await userManager.GetClaimsAsync(user);
             var userRoles = await userManager.GetRolesAsync(user);
 
             var model = new EditUserViewModel
