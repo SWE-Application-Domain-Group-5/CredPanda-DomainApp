@@ -29,7 +29,7 @@ namespace EliApp.Controllers
             if (user != null)
             {
                 user.isActive = true;
-                userManager.UpdateAsync(user);
+                await userManager.UpdateAsync(user);
                 return RedirectToAction("ListUsers");
                 //return View("ListUsers");
             }
@@ -50,7 +50,6 @@ namespace EliApp.Controllers
                 //if(user.isActive)
                 user.isActive = false;
                 await userManager.UpdateAsync(user);
-
                 return RedirectToAction("ListUsers");
             }
             else
