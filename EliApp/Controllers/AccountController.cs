@@ -46,7 +46,8 @@ namespace EliApp.Controllers
         // GET: Account/Create
         public IActionResult Create()
         {
-            return View();
+            AccountModel model = new AccountModel();
+            return View(model);
         }
 
         // POST: Account/Create
@@ -54,10 +55,12 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
+        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,DisplayInitialBalance,DisplayCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
         {
             if (ModelState.IsValid)
             {
+                accountModel.DisplayCurrentBalance = accountModel.AccountCurrentBalance.ToString("#,##0.00");
+                accountModel.DisplayInitialBalance = accountModel.AccountInitialBalance.ToString("#,##0.00");
                 _context.Add(accountModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,6 +100,7 @@ namespace EliApp.Controllers
             {
                 try
                 {
+                    //accountModel.DisplayInitialBalance = accountModel.AccountInitialBalance.ToString();
                     _context.Update(accountModel);
                     await _context.SaveChangesAsync();
                 }
