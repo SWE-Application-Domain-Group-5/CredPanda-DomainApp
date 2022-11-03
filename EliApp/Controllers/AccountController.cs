@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EliApp.Data;
 using EliApp.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EliApp.Controllers
 {
@@ -22,7 +24,7 @@ namespace EliApp.Controllers
         // GET: Account
         public async Task<IActionResult> Index()
         {
-              return View(await _context.AccountModel.ToListAsync());
+            return View(await _context.AccountModel.ToListAsync());
         }
 
         // GET: Account/Details/5
@@ -59,8 +61,6 @@ namespace EliApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                accountModel.DisplayCurrentBalance = accountModel.AccountCurrentBalance.ToString("#,##0.00");
-                accountModel.DisplayInitialBalance = accountModel.AccountInitialBalance.ToString("#,##0.00");
                 _context.Add(accountModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -160,6 +160,29 @@ namespace EliApp.Controllers
         private bool AccountModelExists(int id)
         {
           return _context.AccountModel.Any(e => e.Id == id);
+        }
+
+        public async Task<int> CreateNewAccount(AccountModel model)
+        {
+            var newAccount = new AccountModel()
+            {
+                Id = model.Id,
+                AccountName = model.AccountName,
+                AccountNumber = model.AccountNumber,
+                AccountDescription = model.AccountDescription,
+                AccountType = model.AccountType,
+                AccountCategory = model.AccountCategory,
+                AccountSubcategory = model.AccountSubcategory,
+                AccountInitialBalance = model.AccountInitialBalance,
+                AccountCurrentBalance = model.AccountCurrentBalance,
+                AccountOrder = model.AccountOrder,
+                AccountStatement = model.AccountStatement,
+                AccountComment = model.AccountComment,
+                AccountCreationTime = DateTime.Today
+            };
+            _context.Add(newAccount);
+            await _context.SaveChangesAsync();
+            return model.AccountNumber;
         }
     }
 }

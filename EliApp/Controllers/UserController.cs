@@ -21,7 +21,6 @@ namespace EliApp.Controllers
             this.userManager = userManager;
         }
 
-        //Not function properbly ATM
         public async Task<IActionResult> ActivateUser(string id)
         {
             var user = await userManager.FindByIdAsync(id);
@@ -40,7 +39,7 @@ namespace EliApp.Controllers
             }
         }
 
-        //Not function properbly ATM
+        
         public async Task<IActionResult> DeactivateUser(string id)
         {
             var user = await userManager.FindByIdAsync(id);
