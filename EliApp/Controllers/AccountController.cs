@@ -184,5 +184,11 @@ namespace EliApp.Controllers
             await _context.SaveChangesAsync();
             return model.AccountNumber;
         }
+        public async Task<IActionResult> ViewJournalEntry(string id)
+        {
+            //Find the associated Journal Entry and return its "Details" View
+            return View(_context.EntryModel.Find());
+        }
+
     }
 }

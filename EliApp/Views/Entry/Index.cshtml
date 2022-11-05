@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "Index";
 }
+@using (Html.BeginForm())
+{
+    <div class="input-group-text">
+        Find: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+}
 
 <h1>Journal</h1>
 

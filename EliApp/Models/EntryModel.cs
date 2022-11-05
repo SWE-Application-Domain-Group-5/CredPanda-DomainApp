@@ -1,5 +1,7 @@
 ﻿using EliApp.Areas.Identity.Data;
+using EliApp.Migrations;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -40,6 +42,12 @@ namespace EliApp.Models
         public float amount { get; set; }
 
         /* Testing Stuff out for right now
+         * protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<EntryModel>()
+                .HasKey(e => new { e.accountInvolved});
+        }
         public class InputModel
         {
         }

@@ -9,6 +9,7 @@ using EliApp.Data;
 using EliApp.Models;
 using Microsoft.AspNetCore.Identity;
 using EliApp.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EliApp.Controllers
 {
@@ -24,9 +25,17 @@ namespace EliApp.Controllers
         }
 
         // GET: Entry
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return View(await _context.EntryModel.ToListAsync());
+            var entries = from e in _context.EntryModel
+                           select e;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                entries = entries.Where(e => e.accountInvolved.Contains(searchString)
+                                       || e.amount.ToString().Contains(searchString)
+                                       || e.DateTime.ToString().Contains(searchString));
+            }
+            return View(await entries.ToListAsync());
         }
 
         // GET: Entry/Details/5
@@ -177,6 +186,47 @@ namespace EliApp.Controllers
         {
           return _context.EntryModel.Any(e => e.Id == id);
         }
+
+        [Authorize (Roles = "Manager")]
+        public async Task<IActionResult> Approved(int id)
+        {
+            var entry = await _context.EntryModel.FindAsync(id);
+
+            if (entry != null)
+            {
+                entry.state = EntryState.APPROVED;
+                _context.Update(entry);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = $"Entry with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+
+        }
+
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> Declined(int id)
+        {
+            var entry = await _context.EntryModel.FindAsync(id);
+
+            if (entry != null)
+            {
+                entry.state = EntryState.DECLINED;
+                _context.Update(entry);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = $"Entry with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+            
+        }
+
         /*
          * 
          * var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
