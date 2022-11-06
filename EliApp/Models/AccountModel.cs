@@ -28,6 +28,7 @@ namespace EliApp.Models
             }
             AccountNumber = accnum;
             AccountCurrentBalance = AccountInitialBalance;
+            AccountUserID = rand.Next(0,100).ToString();
         }
         public int Id { get; set; }
         [DisplayName("Name")]
