@@ -162,7 +162,7 @@ namespace EliApp.Controllers
           return _context.AccountModel.Any(e => e.Id == id);
         }
 
-        public async Task<int> CreateNewAccount(AccountModel model)
+        public async Task<AccountModel> CreateNewAccount(AccountModel model)
         {
             var newAccount = new AccountModel()
             {
@@ -182,7 +182,7 @@ namespace EliApp.Controllers
             };
             _context.Add(newAccount);
             await _context.SaveChangesAsync();
-            return model.AccountNumber;
+            return model;
         }
         public async Task<IActionResult> ViewJournalEntry(string id)
         {
