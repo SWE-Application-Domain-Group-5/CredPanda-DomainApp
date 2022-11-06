@@ -75,3 +75,5 @@ _[Ss]cripts
 *.dot[Cc]over
 .vs/**
 obj/**
+EliApp/obj/Debug/net6.0/EliApp.GeneratedMSBuildEditorConfig.editorconfig
+EliApp/obj/Debug/net6.0/EliApp.assets.cache

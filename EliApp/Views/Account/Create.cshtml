@@ -2,10 +2,10 @@
 @model EliApp.Models.AccountModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create New Account";
 }
 
-<h1>Create</h1>
+<h1>Create New Account</h1>
 
 <h4>AccountModel</h4>
 <hr />
@@ -18,11 +18,7 @@
                 <input asp-for="AccountName" class="form-control" />
                 <span asp-validation-for="AccountName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AccountNumber" class="control-label"></label>
-                <input asp-for="AccountNumber" class="form-control" />
-                <span asp-validation-for="AccountNumber" class="text-danger"></span>
-            </div>
+            @* Removed acc number - Eli *@
             <div class="form-group">
                 <label asp-for="AccountDescription" class="control-label"></label>
                 <input asp-for="AccountDescription" class="form-control" />
@@ -48,21 +44,9 @@
                 <input asp-for="AccountInitialBalance" class="form-control" />
                 <span asp-validation-for="AccountInitialBalance" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AccountCurrentBalance" class="control-label"></label>
-                <input asp-for="AccountCurrentBalance" class="form-control" />
-                <span asp-validation-for="AccountCurrentBalance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AccountCreationTime" class="control-label"></label>
-                <input asp-for="AccountCreationTime" class="form-control" />
-                <span asp-validation-for="AccountCreationTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AccountUserID" class="control-label"></label>
-                <input asp-for="AccountUserID" class="form-control" />
-                <span asp-validation-for="AccountUserID" class="text-danger"></span>
-            </div>
+            @* Removed acc current balance - Eli *@
+            @* Removed acc creation time - Eli *@
+            @* Removed acc user id - Eli *@
             <div class="form-group">
                 <label asp-for="AccountOrder" class="control-label"></label>
                 <input asp-for="AccountOrder" class="form-control" />

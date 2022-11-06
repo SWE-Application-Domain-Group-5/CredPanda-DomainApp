@@ -4,6 +4,7 @@ using EliApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EliApp.Migrations
 {
     [DbContext(typeof(EliAppContext))]
-    partial class EliAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221105225300_RevisedGeneratedAttributesEli")]
+    partial class RevisedGeneratedAttributesEli
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,15 +132,15 @@ namespace EliApp.Migrations
                     b.Property<DateTime>("AccountCreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("AccountCurrentBalance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("AccountCurrentBalance")
+                        .HasColumnType("real");
 
                     b.Property<string>("AccountDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("AccountInitialBalance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("AccountInitialBalance")
+                        .HasColumnType("real");
 
                     b.Property<string>("AccountName")
                         .IsRequired()
@@ -148,18 +150,21 @@ namespace EliApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AccountOrder")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountOrder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AccountStatement")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountStatement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountSubcategory")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AccountType")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountUserID")
                         .IsRequired()
@@ -167,40 +172,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccountModel", (string)null);
-                });
-
-            modelBuilder.Entity("EliApp.Models.EntryModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("accountInvolved")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("accountType")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("state")
-                        .HasColumnType("int");
-
-                    b.Property<string>("supportingFile")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EntryModel", (string)null);
+                    b.ToTable("AccountModel");
                 });
 
             modelBuilder.Entity("EliApp.Models.Item", b =>
@@ -221,7 +193,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item", (string)null);
+                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
