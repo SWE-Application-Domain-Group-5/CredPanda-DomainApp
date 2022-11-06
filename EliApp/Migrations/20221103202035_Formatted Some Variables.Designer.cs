@@ -4,6 +4,7 @@ using EliApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EliApp.Migrations
 {
     [DbContext(typeof(EliAppContext))]
-    partial class EliAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221103202035_Formatted Some Variables")]
+    partial class FormattedSomeVariables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,9 +146,8 @@ namespace EliApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AccountNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AccountNumber")
+                        .HasColumnType("int");
 
                     b.Property<int>("AccountOrder")
                         .HasColumnType("int");
@@ -167,7 +168,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccountModel", (string)null);
+                    b.ToTable("AccountModel");
                 });
 
             modelBuilder.Entity("EliApp.Models.EntryModel", b =>
@@ -200,7 +201,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EntryModel", (string)null);
+                    b.ToTable("EntryModel");
                 });
 
             modelBuilder.Entity("EliApp.Models.Item", b =>
@@ -221,7 +222,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item", (string)null);
+                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

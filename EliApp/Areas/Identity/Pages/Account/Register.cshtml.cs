@@ -169,7 +169,7 @@ namespace EliApp.Areas.Identity.Pages.Account
                 user.ProfilePicture = Upload.FileName;
 
                 user.Email = Input.Email;
-                user.isActive = true; //added user's activation status, default is false - Rasul
+                user.isActive = false; //added user's activation status, default is false - Rasul
                 
                 #region Generate Username
                 //Take the first letter from the first name

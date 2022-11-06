@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EliApp.Data;
 using EliApp.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EliApp.Controllers
 {
@@ -22,7 +24,7 @@ namespace EliApp.Controllers
         // GET: Account
         public async Task<IActionResult> Index()
         {
-              return View(await _context.AccountModel.ToListAsync());
+            return View(await _context.AccountModel.ToListAsync());
         }
 
         // GET: Account/Details/5
@@ -46,7 +48,8 @@ namespace EliApp.Controllers
         // GET: Account/Create
         public IActionResult Create()
         {
-            return View();
+            AccountModel model = new AccountModel();
+            return View(model);
         }
 
         // POST: Account/Create
@@ -54,7 +57,7 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
+        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,DisplayInitialBalance,DisplayCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +100,7 @@ namespace EliApp.Controllers
             {
                 try
                 {
+                    //accountModel.DisplayInitialBalance = accountModel.AccountInitialBalance.ToString();
                     _context.Update(accountModel);
                     await _context.SaveChangesAsync();
                 }
@@ -157,5 +161,34 @@ namespace EliApp.Controllers
         {
           return _context.AccountModel.Any(e => e.Id == id);
         }
+
+        public async Task<int> CreateNewAccount(AccountModel model)
+        {
+            var newAccount = new AccountModel()
+            {
+                Id = model.Id,
+                AccountName = model.AccountName,
+                AccountNumber = model.AccountNumber,
+                AccountDescription = model.AccountDescription,
+                AccountType = model.AccountType,
+                AccountCategory = model.AccountCategory,
+                AccountSubcategory = model.AccountSubcategory,
+                AccountInitialBalance = model.AccountInitialBalance,
+                AccountCurrentBalance = model.AccountCurrentBalance,
+                AccountOrder = model.AccountOrder,
+                AccountStatement = model.AccountStatement,
+                AccountComment = model.AccountComment,
+                AccountCreationTime = DateTime.Today
+            };
+            _context.Add(newAccount);
+            await _context.SaveChangesAsync();
+            return model.AccountNumber;
+        }
+        public async Task<IActionResult> ViewJournalEntry(string id)
+        {
+            //Find the associated Journal Entry and return its "Details" View
+            return View(_context.EntryModel.Find());
+        }
+
     }
 }
