@@ -39,6 +39,7 @@ namespace EliApp.Models
         [Display(Name = "Status")]
         public EntryState state { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Amount")]
         public float amount { get; set; }
 
         /* Testing Stuff out for right now

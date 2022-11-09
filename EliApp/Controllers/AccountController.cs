@@ -9,23 +9,45 @@ using EliApp.Data;
 using EliApp.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using EliApp.Areas.Identity.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EliApp.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly EliAppContext _context;
+        private readonly UserManager<EliAppUser> _userManager;
 
         public AccountController(EliAppContext context)
         {
             _context = context;
+            UserManager<EliAppUser> userManager;
         }
 
         // GET: Account
+        // Stole from Rasul, thanks - Eli
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var accounts = from a in _context.AccountModel
+                          select a;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                accounts = accounts.Where(a => a.AccountName.Contains(searchString)
+                                       || a.AccountNumber.Contains(searchString));
+            }
+            return View(await accounts.ToListAsync());
+        }
+
+        // GET: Account
+        /* OLD GET METHOD
         public async Task<IActionResult> Index()
         {
             return View(await _context.AccountModel.ToListAsync());
-        }
+        }*/
 
         // GET: Account/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -49,6 +71,7 @@ namespace EliApp.Controllers
         public IActionResult Create()
         {
             AccountModel model = new AccountModel();
+            model.AccountUserID = User.Identity.Name;
             return View(model);
         }
 
@@ -62,6 +85,7 @@ namespace EliApp.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(accountModel);
+                accountModel.AccountCurrentBalance = accountModel.AccountInitialBalance;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -120,6 +144,7 @@ namespace EliApp.Controllers
             return View(accountModel);
         }
 
+        [Authorize(Roles = "Administrator, Manager")]
         // GET: Account/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -138,6 +163,7 @@ namespace EliApp.Controllers
             return View(accountModel);
         }
 
+        [Authorize(Roles = "Administrator, Manager")]
         // POST: Account/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
