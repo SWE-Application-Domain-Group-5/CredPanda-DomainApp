@@ -31,6 +31,10 @@ namespace EliApp.Models
 
             
             //string? AccountUserID;
+=======
+            AccountCurrentBalance = AccountInitialBalance;
+            AccountUserID = rand.Next(0, 9).ToString();
+>>>>>>> Stashed changes
         }
         public int Id { get; set; }
         [DisplayName("Name")]
