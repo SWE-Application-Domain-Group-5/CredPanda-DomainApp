@@ -41,6 +41,7 @@ namespace EliApp.Models
         [Column(TypeName = "decimal(18, 2)")]
         [Display(Name = "Amount")]
         public float amount { get; set; }
+        public string comment { get; set; }
 
         /* Testing Stuff out for right now
          * protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,4 +1,5 @@
-﻿@inject SignInManager<EliAppUser> SignInManager
+﻿@using EliApp.Areas.Identity.Data
+@inject SignInManager<EliAppUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
