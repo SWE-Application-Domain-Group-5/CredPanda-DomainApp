@@ -21,8 +21,6 @@ public class EliAppContext : IdentityDbContext<EliAppUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-    public DbSet<EliApp.Models.Item> Item { get; set; }
-
     public DbSet<EliApp.Models.AccountModel> AccountModel { get; set; }
 
     public DbSet<EliApp.Models.EntryModel> EntryModel { get; set; }
