@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EliApp.Models.EntryModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Journal";
 }
 @using (Html.BeginForm())
 {
@@ -19,9 +19,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateTime)
             </th>
@@ -43,9 +40,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateTime)
             </td>

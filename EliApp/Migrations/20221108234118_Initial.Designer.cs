@@ -4,6 +4,7 @@ using EliApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EliApp.Migrations
 {
     [DbContext(typeof(EliAppContext))]
-    partial class EliAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221108234118_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +122,6 @@ namespace EliApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AccountCategory")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountComment")
@@ -129,25 +130,22 @@ namespace EliApp.Migrations
                     b.Property<DateTime>("AccountCreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("AccountCurrentBalance")
+                    b.Property<float?>("AccountCurrentBalance")
                         .HasColumnType("real");
 
                     b.Property<string>("AccountDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("AccountInitialBalance")
+                    b.Property<float?>("AccountInitialBalance")
                         .HasColumnType("real");
 
                     b.Property<string>("AccountName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountOrder")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountStatement")
@@ -157,11 +155,9 @@ namespace EliApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountUserID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -190,10 +186,6 @@ namespace EliApp.Migrations
                     b.Property<decimal>("amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("comment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("state")
                         .HasColumnType("int");
 
@@ -204,6 +196,27 @@ namespace EliApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EntryModel");
+                });
+
+            modelBuilder.Entity("EliApp.Models.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

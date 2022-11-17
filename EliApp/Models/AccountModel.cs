@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using System.Security.Cryptography;
+using EliApp.Controllers;
 
 namespace EliApp.Models
 {
@@ -30,7 +31,9 @@ namespace EliApp.Models
                 accnum += rand.Next(0, 9).ToString();
             }
             AccountNumber = accnum;
+
             AccountCurrentBalance = AccountInitialBalance;
+            AccountUserID = rand.Next(0, 9).ToString();
         }
         public int Id { get; set; }
         [DisplayName("Name")]
@@ -38,13 +41,13 @@ namespace EliApp.Models
         [DisplayName("Account #")]
         public string AccountNumber { get; set; }
         [DisplayName("Description")]
-        public string AccountDescription { get; set; }
+        public string? AccountDescription { get; set; }
         [DisplayName("Type")]
         public string AccountType { get; set; } //debit or credit
         [DisplayName("Category")]
         public string AccountCategory { get; set; }
         [DisplayName("Subcategory")]
-        public string AccountSubcategory { get; set; }
+        public string? AccountSubcategory { get; set; }
         [DisplayName("Initial Balance")]
         public float AccountInitialBalance { get; set; }
         [DisplayName("Current Balance")]
@@ -58,6 +61,6 @@ namespace EliApp.Models
         [DisplayName("Statement")]
         public Statement AccountStatement { get; set; }
         [DisplayName("Comment")]
-        public string AccountComment { get; set; }
+        public string? AccountComment { get; set; }
     }
 }
