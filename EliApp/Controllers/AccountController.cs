@@ -162,7 +162,7 @@ namespace EliApp.Controllers
           return _context.AccountModel.Any(e => e.Id == id);
         }
 
-        public async Task<int> CreateNewAccount(AccountModel model)
+        public async Task<string> CreateNewAccount(AccountModel model)
         {
             var newAccount = new AccountModel()
             {
