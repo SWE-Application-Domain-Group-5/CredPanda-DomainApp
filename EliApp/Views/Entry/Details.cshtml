@@ -46,7 +46,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.state)
         </dd>
-        @*Add a way to approve or decline entries here*@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.amount)
         </dt>
@@ -58,12 +57,24 @@
 @{
     if(Model.state == EntryState.PENDING)
     {
-        <a asp-action="Approved" asp-route-id="@Model.Id" type="submit" class="btn btn-primary">Approve</a> 
-        <a asp-action="Declined" asp-route-id="@Model.Id" type="submit" class="btn btn-danger">Decline</a>
+    <div class="form-group">
+        <label asp-for="comment" class="control-label">Comments</label>
+        <input asp-for="comment" class="form-control" />
+        <span asp-validation-for="comment" class="text-danger"></span>
+    </div>
+    <a asp-action="Approved" asp-route-id="@Model.Id" type="submit" class="btn btn-primary">Approve</a> 
+    <a asp-action="Declined" asp-route-id="@Model.Id" type="submit" class="btn btn-danger">Decline</a>
         
     }
+    else
+    {
+    <div class="form-group">
+        <label asp-for="comment" class="control-label">Comments</label>
+        <input asp-for="comment" class="form-control" readonly/>
+        <span asp-validation-for="comment" class="text-danger"></span>
+    </div>
+    }
 }
-
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

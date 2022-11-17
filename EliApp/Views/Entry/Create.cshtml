@@ -9,17 +9,19 @@
 
 <h1>Create</h1>
 
-<h4>EntryModel</h4>
+<h4>Make a New Entry</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="userId" class="control-label"></label>
+                <input asp-for="userId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
                 <label asp-for="accountInvolved" class="control-label">Account Involved</label>
-                <input asp-for="accountInvolved" class="form-control" />
-                @*<input asp-for="accountInvolved" asp-action="GetUsername" asp-controller="Entry" asp-route-id=@user.GeneratedUserName class="form-control" />*@
-                <span asp-validation-for="accountInvolved" class="text-danger"></span>
+                <input asp-for="accountInvolved" class="form-control"/>
             </div>
             <div class="form-group">
                 <label asp-for="accountType" class="control-label">Type of Account</label>
@@ -27,18 +29,28 @@
                     <option>Debit</option>
                     <option>Credit</option>
                 </select>
-                <span asp-validation-for="accountType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="amount" class="control-label">Amount</label>
                 <input asp-for="amount" class="form-control" />
                 <span asp-validation-for="amount" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="supportingFile" class="control-label">Supporting Files</label>
-                <input asp-for="supportingFile" class="form-control" />
-                <span asp-validation-for="supportingFile" class="text-danger"></span>
+            <form enctype="multipart/form-data" method="post">
+                <dl>
+                    <dt>
+                        <label asp-for="EntryUpload"></label>
+                    </dt>
+                    <dd>
+                        <input asp-for="EntryUpload" type="file">
+                    </dd>
+                </dl>
+                <input asp-page-handler="EntryUpload" class="btn btn-primary" type="submit" value="EntryUpload" />
+            </form>
+            @*
+            <div class="form-group" accept=".txt,.pdf,.doc,.docx,.png,.jpg,.jpeg">
+                Supporting File: <input asp-for="Upload" type="file" />
             </div>
+            *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

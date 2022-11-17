@@ -4,6 +4,7 @@ using EliApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EliApp.Migrations
 {
     [DbContext(typeof(EliAppContext))]
-    partial class EliAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221116225722_Added userID to EntryModel")]
+    partial class AddeduserIDtoEntryModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,8 +152,8 @@ namespace EliApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AccountStatement")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AccountStatement")
+                        .HasColumnType("int");
 
                     b.Property<string>("AccountSubcategory")
                         .HasColumnType("nvarchar(max)");
@@ -198,6 +200,10 @@ namespace EliApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("supportingFile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

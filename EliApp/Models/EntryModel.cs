@@ -1,10 +1,13 @@
 ﻿using EliApp.Areas.Identity.Data;
 using EliApp.Migrations;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
 
 namespace EliApp.Models
@@ -27,12 +30,19 @@ namespace EliApp.Models
         public int Id { get; set; }
         //public InputModel Input { get; set; }
 
+        [NotMapped]
+        [ValidateNever]
+        public IFormFile EntryUpload { get; set; } // added
+        [Display(Name = "Created by:")]
+        [Required]
+        public string userId { get; set; }
         [Display(Name = "Creation Date")]
         [DataType(DataType.Date)]
         public DateTime DateTime { get; set; }
         [Display(Name = "Account Involved")]
         public string accountInvolved { get; set; }
         [Display(Name = "Supporting Files")]
+        [AllowNull]
         public string supportingFile { get; set; }
         [Display(Name = "Type of Account")]
         public AccountType accountType { get; set; }
@@ -41,6 +51,7 @@ namespace EliApp.Models
         [Column(TypeName = "decimal(18, 2)")]
         [Display(Name = "Amount")]
         public float amount { get; set; }
+        [AllowNull]
         public string comment { get; set; }
 
         /* Testing Stuff out for right now
