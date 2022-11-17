@@ -8,9 +8,12 @@ namespace EliApp.Models
 {
     public enum Statement
     {
-        BalanceSheet,
-        IncomeStatement, 
-        RetainedEarnings
+        [Display(Name = "Balance Sheet")]
+        BalanceSheet = 0,
+        [Display(Name = "Income Statement")]
+        IncomeStatement = 1,
+        [Display(Name = "Retained Earnings")]
+        RetainedEarnings = 2,
     }
 
     public class AccountModel
@@ -53,7 +56,7 @@ namespace EliApp.Models
         [DisplayName("Order")]
         public string AccountOrder { get; set; } //"essentially the order the entries are made i.e. Cash (01), Credit (02). "
         [DisplayName("Statement")]
-        public string AccountStatement { get; set; }
+        public Statement AccountStatement { get; set; }
         [DisplayName("Comment")]
         public string AccountComment { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿@*page*@
+@using EliApp.Models
 @model EliApp.Models.AccountModel
 
 @{
@@ -18,15 +19,17 @@
                 <input asp-for="AccountName" class="form-control" />
                 <span asp-validation-for="AccountName" class="text-danger"></span>
             </div>
-            @* Removed acc number - Eli *@
             <div class="form-group">
                 <label asp-for="AccountDescription" class="control-label"></label>
                 <input asp-for="AccountDescription" class="form-control" />
                 <span asp-validation-for="AccountDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountType" class="control-label"></label>
-                <input asp-for="AccountType" class="form-control" />
+                <label asp-for="AccountType" class="control-label">Type of Account</label>
+                <select asp-for="AccountType" class="form-control">
+                    <option>Debit</option>
+                    <option>Credit</option>
+                </select>
                 <span asp-validation-for="AccountType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,9 +47,6 @@
                 <input asp-for="AccountInitialBalance" class="form-control" />
                 <span asp-validation-for="AccountInitialBalance" class="text-danger"></span>
             </div>
-            @* Removed acc current balance - Eli *@
-            @* Removed acc creation time - Eli *@
-            @* Removed acc user id - Eli *@
             <div class="form-group">
                 <label asp-for="AccountOrder" class="control-label"></label>
                 <input asp-for="AccountOrder" class="form-control" />
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AccountStatement" class="control-label"></label>
-                <input asp-for="AccountStatement" class="form-control" />
+                <select asp-for="AccountStatement" class="form-control" asp-items="Html.GetEnumSelectList<Statement>()"></select>
                 <span asp-validation-for="AccountStatement" class="text-danger"></span>
             </div>
             <div class="form-group">

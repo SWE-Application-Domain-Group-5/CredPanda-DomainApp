@@ -10,18 +10,20 @@ using EliApp.Models;
 using Microsoft.AspNetCore.Identity;
 using EliApp.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Hosting;
 
 namespace EliApp.Controllers
 {
     public class EntryController : Controller
     {
         private readonly EliAppContext _context;
-        private readonly UserManager<EliAppUser> userManager;
+        private readonly UserManager<EliAppUser> _userManager;
+        private IWebHostEnvironment _environment; // added
 
         public EntryController(EliAppContext context, UserManager<EliAppUser> userManager)
         {
             _context = context;
-            this.userManager = userManager;
+            _userManager = userManager;
         }
 
         // GET: Entry
@@ -32,8 +34,7 @@ namespace EliApp.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 entries = entries.Where(e => e.accountInvolved.Contains(searchString)
-                                       || e.amount.ToString().Contains(searchString)
-                                       || e.DateTime.ToString().Contains(searchString));
+                                       || e.amount.ToString().Contains(searchString));
             }
             return View(await entries.ToListAsync());
         }
@@ -56,11 +57,45 @@ namespace EliApp.Controllers
             return View(entryModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(int id, [Bind("Id,DateTime,accountInvolved,supportingFile,accountType,state,amount, comment")] EntryModel entryModel)
+        {
+            if (id != entryModel.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(entryModel);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EntryModelExists(entryModel.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(entryModel);
+        }
+
         // GET: Entry/Create
         // Returns the Create VIEW, not to actually create an object
         public IActionResult Create()
         {
-            return View();
+            EntryModel model = new EntryModel();
+            model.userId = User.Identity.Name;
+            return View(model);
         }
 
         // POST: Entry/Create
@@ -68,25 +103,23 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DateTime,accountInvolved,supportingFile,accountType,state,amount")] EntryModel entryModel /*, string userId*/)
+        public async Task<IActionResult> Create([Bind("Id,DateTime,userId,accountInvolved,accountType,Upload,amount,state,")] EntryModel entryModel)
         {
-            /*
-            var user = await userManager.FindByIdAsync(userId);
-            if (user != null)
-            {
-                entryModel.accountInvolved = user.GeneratedUserName;
-            }
-            else
-            {
-                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
-                return View("NotFound");
-            }
-            */
-            //entryModel.DateTime = DateTime.Today;
+            //AccountModel account;
             if (ModelState.IsValid)
             {
                 entryModel.DateTime = DateTime.Today;
-                //entryModel.accountInvolved = GetUser(User);
+                if (entryModel.EntryUpload != null)
+                {
+                    var file = Path.Combine(_environment.WebRootPath, "uploads", entryModel.EntryUpload.FileName);
+                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    {
+                        await entryModel.EntryUpload.CopyToAsync(fileStream);
+                    }
+                    entryModel.supportingFile = entryModel.EntryUpload.FileName;
+                }
+                else
+                { entryModel.supportingFile = "None"; }
                 _context.Add(entryModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -115,7 +148,7 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DateTime,accountInvolved,supportingFile,accountType,state,amount")] EntryModel entryModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,userId,DateTime,accountInvolved,Upload,accountType,state,amount")] EntryModel entryModel)
         {
             if (id != entryModel.Id)
             {
@@ -208,13 +241,14 @@ namespace EliApp.Controllers
         }
 
         [Authorize(Roles = "Manager")]
-        public async Task<IActionResult> Declined(int id)
+        public async Task<IActionResult> Declined([Bind("comment")] EntryModel entryModel, int id)
         {
             var entry = await _context.EntryModel.FindAsync(id);
 
             if (entry != null)
             {
                 entry.state = EntryState.DECLINED;
+                entry.comment = entryModel.comment;
                 _context.Update(entry);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -225,6 +259,12 @@ namespace EliApp.Controllers
                 return View("NotFound");
             }
             
+        }
+
+        public AccountModel MakeAccount(int id)
+        {
+            var account = new AccountModel();
+            return account;
         }
 
         /*
