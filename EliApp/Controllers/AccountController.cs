@@ -15,6 +15,7 @@ namespace EliApp.Controllers
     public class AccountController : Controller
     {
         private readonly EliAppContext _context;
+        private AccountModel oldAccount; //This will hold the 'before' snapshot of any changes to an account - Rasul
 
         public AccountController(EliAppContext context)
         {
@@ -81,6 +82,10 @@ namespace EliApp.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                oldAccount = accountModel;
+            }
             return View(accountModel);
         }
 
@@ -100,7 +105,6 @@ namespace EliApp.Controllers
             {
                 try
                 {
-                    //accountModel.DisplayInitialBalance = accountModel.AccountInitialBalance.ToString();
                     _context.Update(accountModel);
                     await _context.SaveChangesAsync();
                 }
@@ -145,7 +149,7 @@ namespace EliApp.Controllers
         {
             if (_context.AccountModel == null)
             {
-                return Problem("Entity set 'EliAppContext.AccountModel'  is null.");
+                return Problem("Entity set 'EliAppContext.AccountModel' is null.");
             }
             var accountModel = await _context.AccountModel.FindAsync(id);
             if (accountModel != null)

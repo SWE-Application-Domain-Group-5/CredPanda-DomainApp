@@ -33,7 +33,8 @@ namespace EliApp.Controllers
                            select e;
             if (!String.IsNullOrEmpty(searchString))
             {
-                entries = entries.Where(e => e.accountInvolved.Contains(searchString)
+                entries = entries.Where(e => e.account1.Contains(searchString)
+                                       || e.account2.Contains(searchString)
                                        || e.amount.ToString().Contains(searchString));
             }
             return View(await entries.ToListAsync());
@@ -59,7 +60,7 @@ namespace EliApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int id, [Bind("Id,DateTime,accountInvolved,supportingFile,accountType,state,amount, comment")] EntryModel entryModel)
+        public async Task<IActionResult> Details(int id, [Bind("comment")] EntryModel entryModel)
         {
             if (id != entryModel.Id)
             {
@@ -95,6 +96,13 @@ namespace EliApp.Controllers
         {
             EntryModel model = new EntryModel();
             model.userId = User.Identity.Name;
+            List<AccountModel> accountList = new List<AccountModel>();
+            accountList = (from a in _context.AccountModel select a).ToList();
+            accountList.Insert(0, new AccountModel
+            {
+                AccountName= "Select an Account",
+            });
+            ViewBag.message = accountList;
             return View(model);
         }
 
@@ -103,9 +111,8 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DateTime,userId,accountInvolved,accountType,Upload,amount,state,")] EntryModel entryModel)
+        public async Task<IActionResult> Create([Bind("Id,DateTime,userId,account1,account2,accountType,Upload,amount,state,")] EntryModel entryModel)
         {
-            //AccountModel account;
             if (ModelState.IsValid)
             {
                 entryModel.DateTime = DateTime.Today;
@@ -120,6 +127,8 @@ namespace EliApp.Controllers
                 }
                 else
                 { entryModel.supportingFile = "None"; }
+                var account = await _context.AccountModel.FindAsync(Convert.ToInt32(entryModel.account2));
+                entryModel.account2 = account.AccountName;
                 _context.Add(entryModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -148,7 +157,7 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,userId,DateTime,accountInvolved,Upload,accountType,state,amount")] EntryModel entryModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,userId,DateTime,account1,account2,Upload,accountType,state,amount")] EntryModel entryModel)
         {
             if (id != entryModel.Id)
             {
@@ -159,6 +168,7 @@ namespace EliApp.Controllers
             {
                 try
                 {
+                    entryModel.state = EntryState.PENDING;
                     _context.Update(entryModel);
                     await _context.SaveChangesAsync();
                 }
@@ -228,6 +238,39 @@ namespace EliApp.Controllers
             if (entry != null)
             {
                 entry.state = EntryState.APPROVED;
+
+                AccountModel account = null;
+                foreach (var acc in _context.AccountModel)
+                {
+                    if (entry.account1 == acc.AccountName)
+                    {
+                        account = acc; break;
+                    }
+                }
+                if (account == null)
+                {
+                    account = new AccountModel
+                    {
+                        AccountName = entry.account1,
+                        AccountInitialBalance = entry.amount,
+                        AccountCategory = "",
+                        AccountComment = "",
+                        AccountCreationTime= DateTime.Now,
+                        AccountCurrentBalance = entry.amount,
+                        AccountDescription = "",
+                        AccountNumber = "",
+                        AccountOrder = "",
+                        AccountStatement = Statement.BalanceSheet,
+                        AccountSubcategory = "",
+                        AccountType = "",
+                        AccountUserID = entry.userId,
+                    };
+
+                    if (entry.accountType == AccountType.Debit) account.AccountType = "Debit";
+                    else account.AccountType = "Credit";
+                    _context.Add(account);
+                }
+
                 _context.Update(entry);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -241,14 +284,13 @@ namespace EliApp.Controllers
         }
 
         [Authorize(Roles = "Manager")]
-        public async Task<IActionResult> Declined([Bind("comment")] EntryModel entryModel, int id)
+        public async Task<IActionResult> Declined(int id)
         {
             var entry = await _context.EntryModel.FindAsync(id);
 
             if (entry != null)
             {
                 entry.state = EntryState.DECLINED;
-                entry.comment = entryModel.comment;
                 _context.Update(entry);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -259,6 +301,26 @@ namespace EliApp.Controllers
                 return View("NotFound");
             }
             
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Declined([Bind("comment")] EntryModel entryModel, int id)
+        {
+            var entry = await _context.EntryModel.FindAsync(id);
+
+            if (entry != null)
+            {
+                entry.comment = entryModel.comment;
+                _context.Update(entry);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = $"Entry with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+
         }
 
         public AccountModel MakeAccount(int id)

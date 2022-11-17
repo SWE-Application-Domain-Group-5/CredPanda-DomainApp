@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using System.Security.Cryptography;
+using System.Diagnostics.CodeAnalysis;
 
 namespace EliApp.Models
 {

@@ -39,22 +39,26 @@ namespace EliApp.Models
         [Display(Name = "Creation Date")]
         [DataType(DataType.Date)]
         public DateTime DateTime { get; set; }
-        [Display(Name = "Account Involved")]
-        public string accountInvolved { get; set; }
+        [Display(Name = "First Account")]
+        public string account1 { get; set; }
+        [Display(Name = "Second Account")]
+        public string account2 { get; set; }
         [Display(Name = "Supporting Files")]
         [AllowNull]
-        public string supportingFile { get; set; }
+        public string supportingFile { get; set; } = "";
         [Display(Name = "Type of Account")]
         public AccountType accountType { get; set; }
         [Display(Name = "Status")]
         public EntryState state { get; set; }
+        [Display(Name = "Amount")]
         [Column(TypeName = "decimal(18, 2)")]
         public float amount { get; set; }
         [AllowNull]
-        public string comment { get; set; }
+        [Display(Name = "Comments")]
+        public string comment { get; set; } = "";
 
         /* Testing Stuff out for right now
-         * protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Entity<EntryModel>()
