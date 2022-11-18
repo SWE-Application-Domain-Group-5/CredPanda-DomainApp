@@ -150,8 +150,8 @@ namespace EliApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AccountStatement")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AccountStatement")
+                        .HasColumnType("int");
 
                     b.Property<string>("AccountSubcategory")
                         .HasColumnType("nvarchar(max)");
@@ -198,6 +198,10 @@ namespace EliApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("supportingFile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

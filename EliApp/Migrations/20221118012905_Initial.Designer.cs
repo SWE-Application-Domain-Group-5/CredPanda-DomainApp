@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EliApp.Migrations
 {
     [DbContext(typeof(EliAppContext))]
-    [Migration("20221106002101_Updating Database")]
-    partial class UpdatingDatabase
+    [Migration("20221118012905_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -126,7 +126,6 @@ namespace EliApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountComment")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("AccountCreationTime")
@@ -136,7 +135,6 @@ namespace EliApp.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("AccountDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("AccountInitialBalance")
@@ -154,12 +152,10 @@ namespace EliApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AccountStatement")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AccountStatement")
+                        .HasColumnType("int");
 
                     b.Property<string>("AccountSubcategory")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountType")
@@ -196,6 +192,10 @@ namespace EliApp.Migrations
                     b.Property<decimal>("amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("state")
                         .HasColumnType("int");
 
@@ -203,30 +203,13 @@ namespace EliApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("userId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("EntryModel");
-                });
-
-            modelBuilder.Entity("EliApp.Models.Item", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
