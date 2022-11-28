@@ -49,9 +49,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.AccountStatement)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AccountComment)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -62,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.AccountName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AccountNumber)
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.AccountNumber)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AccountDescription)
@@ -93,9 +90,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AccountStatement)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountComment)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

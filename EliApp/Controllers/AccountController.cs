@@ -9,6 +9,7 @@ using EliApp.Data;
 using EliApp.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace EliApp.Controllers
 {
@@ -50,6 +51,7 @@ namespace EliApp.Controllers
         public IActionResult Create()
         {
             AccountModel model = new AccountModel();
+            model.AccountUserID = User.Identity.Name;
             return View(model);
         }
 
@@ -58,8 +60,11 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,DisplayInitialBalance,DisplayCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
+        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,DisplayInitialBalance,DisplayCurrentBalance,AccountCreationTime,AccountOrder,AccountStatement")] AccountModel accountModel)
         {
+            accountModel.AccountUserID = User.Identity.Name;
+            //Later - Add a quick Find algorithm to change the email into the generated username - Rasul
+            accountModel.AccountCurrentBalance = accountModel.AccountInitialBalance;
             if (ModelState.IsValid)
             {
                 _context.Add(accountModel);
@@ -94,7 +99,7 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement")] AccountModel accountModel)
         {
             if (id != accountModel.Id)
             {
@@ -181,7 +186,6 @@ namespace EliApp.Controllers
                 AccountCurrentBalance = model.AccountCurrentBalance,
                 AccountOrder = model.AccountOrder,
                 AccountStatement = model.AccountStatement,
-                AccountComment = model.AccountComment,
                 AccountCreationTime = DateTime.Today
             };
             _context.Add(newAccount);
@@ -193,6 +197,5 @@ namespace EliApp.Controllers
             //Find the associated Journal Entry and return its "Details" View
             return View(_context.EntryModel.Find());
         }
-
     }
 }

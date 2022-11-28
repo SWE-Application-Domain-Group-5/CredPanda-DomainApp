@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using EliApp.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore.Update;
 
 namespace EliApp.Controllers
 {
@@ -239,38 +240,127 @@ namespace EliApp.Controllers
             {
                 entry.state = EntryState.APPROVED;
 
-                AccountModel account = null;
-                foreach (var acc in _context.AccountModel)
+                AccountModel account1 = null;
+                AccountModel account2 = null;
+                LedgerModel ledger1 = new LedgerModel()
+                {
+                    description = "",
+                    date = entry.DateTime,
+                    accountID = 0,
+                    associatedAccountName = "",
+                    journalEntryID = entry.Id,
+                    balance = 0,
+                    debitAmount = 0,
+                    creditAmount = 0,
+                };
+                LedgerModel ledger2 = new LedgerModel()
+                {
+                    description = "",
+                    date = entry.DateTime,
+                    accountID = 0,
+                    associatedAccountName = "",
+                    journalEntryID = entry.Id,
+                    balance = 0,
+                    debitAmount = 0,
+                    creditAmount = 0,
+                };
+                foreach (var acc in _context.AccountModel) //try and match the account inputted to an existing one
                 {
                     if (entry.account1 == acc.AccountName)
                     {
-                        account = acc; break;
+                        account1 = acc;
+                        ledger1.accountID = account1.Id;
+                        break;
                     }
                 }
-                if (account == null)
+                foreach (var acc in _context.AccountModel) //account 2 always exists in the system, so just match it
                 {
-                    account = new AccountModel
+                    if (entry.account2 == acc.AccountName)
+                    {
+                        account2 = acc;
+                        ledger2.accountID = account2.Id;
+                        break;
+                    }
+                }
+                if (account1 == null) //Account 1 is a new account
+                {
+                    account1 = new AccountModel
                     {
                         AccountName = entry.account1,
                         AccountInitialBalance = entry.amount,
-                        AccountCategory = "",
-                        AccountComment = "",
+                        AccountCategory = AccountCategory.None,
                         AccountCreationTime= DateTime.Now,
                         AccountCurrentBalance = entry.amount,
                         AccountDescription = "",
                         AccountNumber = "",
-                        AccountOrder = "",
+                        AccountOrder = _context.AccountModel.Count() + 1,
                         AccountStatement = Statement.BalanceSheet,
                         AccountSubcategory = "",
-                        AccountType = "",
+                        AccountType = AccountType.Debit,
                         AccountUserID = entry.userId,
+                        entryId = entry.Id,
                     };
+                    DateTime now = new DateTime();
+                    now = DateTime.Now;
+                    Random rand = new Random();
+                    string accnum;
+                    accnum = now.Month.ToString() + now.Day.ToString();
+                    for (int ctr = 0; ctr <= 5; ctr++)
+                    {
+                        accnum += rand.Next(0, 9);
+                    }
+                    account1.AccountNumber = accnum;
+                    ledger1.accountID = account1.Id;
+                    ledger1.associatedAccountName = account2.AccountName;
+                    ledger2.associatedAccountName = account1.AccountName;
 
-                    if (entry.accountType == AccountType.Debit) account.AccountType = "Debit";
-                    else account.AccountType = "Credit";
-                    _context.Add(account);
+                    if (entry.accountType == AccountType.Debit) //money goes from account 2 to account 1
+                    {
+                        account1.AccountType = AccountType.Debit;
+                        ledger1.creditAmount = entry.amount;
+                        ledger1.balance = account1.AccountCurrentBalance;
+                        account2.AccountCurrentBalance -= entry.amount;
+                        ledger2.debitAmount = entry.amount;
+                        ledger2.balance = account2.AccountCurrentBalance;
+                    }
+                    else //money goes from account 1 to account 2
+                    { 
+                        account1.AccountType = AccountType.Credit;
+                        ledger1.debitAmount = entry.amount;
+                        ledger1.balance = account1.AccountCurrentBalance;
+                        account2.AccountCurrentBalance += entry.amount;
+                        ledger2.creditAmount = entry.amount;
+                        ledger2.balance = account2.AccountCurrentBalance;
+                    }
+                    _context.Add(account1);
                 }
-
+                else //Account 1 is not a new account
+                {
+                    ledger1.associatedAccountName = account2.AccountName;
+                    ledger2.associatedAccountName = account1.AccountName;
+                    if (entry.accountType == AccountType.Debit) //money goes from account 2 to account 1
+                    {
+                        account1.AccountCurrentBalance += entry.amount;
+                        ledger1.creditAmount = entry.amount;
+                        ledger1.balance = account1.AccountCurrentBalance;
+                        account2.AccountCurrentBalance -= entry.amount;
+                        ledger2.debitAmount = entry.amount;
+                        ledger2.balance = account2.AccountCurrentBalance;
+                    }
+                    else //money goes from account 1 to account 2
+                    {
+                        account1.AccountCurrentBalance -= entry.amount;
+                        ledger1.debitAmount = entry.amount;
+                        ledger1.balance = account1.AccountCurrentBalance;
+                        account2.AccountCurrentBalance += entry.amount;
+                        ledger2.creditAmount = entry.amount;
+                        ledger2.balance = account2.AccountCurrentBalance;
+                    }
+                    _context.Update(account1);
+                }
+                _context.Add(ledger1);
+                _context.Add(ledger2);
+                _context.Update(account2);
                 _context.Update(entry);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

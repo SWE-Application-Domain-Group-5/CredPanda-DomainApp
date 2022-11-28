@@ -4,17 +4,37 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using System.Security.Cryptography;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace EliApp.Models
 {
     public enum Statement
     {
+        [Display(Name = "Select a Statement")]
+        None = 0,
         [Display(Name = "Balance Sheet")]
-        BalanceSheet = 0,
+        BalanceSheet = 1,
         [Display(Name = "Income Statement")]
-        IncomeStatement = 1,
+        IncomeStatement = 2,
         [Display(Name = "Retained Earnings")]
-        RetainedEarnings = 2,
+        RetainedEarnings = 3,
+    }
+
+    public enum AccountCategory
+    {
+        [Display(Name = "Select a Category")]
+        None = 0,
+        [Display(Name = "Assets")]
+        Assets = 1,
+        [Display(Name = "Revenue")]
+        Revenue = 2,
+        [Display(Name = "Liabilities")]
+        Liabilities = 3,
+        [Display(Name = "Expenses")]
+        Expenses = 4,
+        [Display(Name = "Equity")]
+        Equity = 5,
+
     }
 
     public class AccountModel
@@ -28,10 +48,10 @@ namespace EliApp.Models
             accnum = now.Month.ToString() + now.Day.ToString();
             for (int ctr = 0; ctr <= 5; ctr++)
             {
-                accnum += rand.Next(0, 9).ToString();
+                accnum += rand.Next(0, 9);
             }
             AccountNumber = accnum;
-            AccountCurrentBalance = AccountInitialBalance;
+            this.AccountCurrentBalance = this.AccountInitialBalance;
         }
         public int Id { get; set; }
         [DisplayName("Name")]
@@ -41,10 +61,11 @@ namespace EliApp.Models
         [DisplayName("Description")]
         public string AccountDescription { get; set; }
         [DisplayName("Type")]
-        public string AccountType { get; set; } //debit or credit
+        public AccountType AccountType { get; set; } //debit or credit
         [DisplayName("Category")]
-        public string AccountCategory { get; set; }
+        public AccountCategory AccountCategory { get; set; }
         [DisplayName("Subcategory")]
+        [AllowNull]
         public string AccountSubcategory { get; set; }
         [DisplayName("Initial Balance")]
         public float AccountInitialBalance { get; set; }
@@ -53,12 +74,14 @@ namespace EliApp.Models
         [DisplayName("Creation Time")]
         public DateTime AccountCreationTime { get; set; } = DateTime.Now;
         [DisplayName("UserID")]
+        [ValidateNever]
         public string AccountUserID { get; set; }
         [DisplayName("Order")]
-        public string AccountOrder { get; set; } //"essentially the order the entries are made i.e. Cash (01), Credit (02). "
+        public int AccountOrder { get; set; } //"essentially the order the entries are made i.e. Cash (01), Credit (02). "
         [DisplayName("Statement")]
         public Statement AccountStatement { get; set; }
-        [DisplayName("Comment")]
-        public string AccountComment { get; set; }
+        [AllowNull]
+        [ValidateNever]
+        public int entryId { get; set; }
     }
 }

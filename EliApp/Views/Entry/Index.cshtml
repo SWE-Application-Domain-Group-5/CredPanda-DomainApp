@@ -2,6 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    float total = 0;
+    foreach(var item in Model)
+    {
+        total += item.amount;
+    }
 }
 @using (Html.BeginForm())
 {
@@ -38,7 +43,10 @@
                 @Html.DisplayNameFor(model => model.state)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.amount)
+                Dr.
+            </th>
+            <th>
+                Cr.
             </th>
             <th></th>
         </tr>
@@ -47,7 +55,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Id) </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateTime)
@@ -68,9 +76,27 @@
                 @Html.DisplayFor(modelItem => item.amount)
             </td>
             <td>
+                -@Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
                 <a asp-action="Details" asp-route-id="@item.Id">View Entry</a>
             </td>
         </tr>
 }
+    </tbody>
+    <tbody>
+        <tr>
+            <td>Total Balance</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            
+            <td>
+            </td>
+        </tr>
     </tbody>
 </table>

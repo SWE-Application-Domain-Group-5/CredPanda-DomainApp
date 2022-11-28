@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using EliApp.Models;
+using System.Reflection.Emit;
 
 namespace EliApp.Data;
 
@@ -21,9 +22,8 @@ public class EliAppContext : IdentityDbContext<EliAppUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-    public DbSet<EliApp.Models.Item> Item { get; set; }
-
     public DbSet<EliApp.Models.AccountModel> AccountModel { get; set; }
 
     public DbSet<EliApp.Models.EntryModel> EntryModel { get; set; }
+    public DbSet<EliApp.Models.LedgerModel> LedgerModel { get; set; }
 }

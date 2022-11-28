@@ -46,7 +46,7 @@ namespace EliApp.Models
         [Display(Name = "Supporting Files")]
         [AllowNull]
         public string supportingFile { get; set; } = "";
-        [Display(Name = "Type of Account")]
+        [Display(Name = "Type of Transaction")]
         public AccountType accountType { get; set; }
         [Display(Name = "Status")]
         public EntryState state { get; set; }

@@ -2,11 +2,9 @@
 @{
     ViewData["Title"] = "Account Details";
 }
-
+@*inject LedgerModel Ledger*@
 <h1>Account Details</h1>
-
 <div>
-    <h4>AccountModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -81,16 +79,18 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AccountStatement)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccountComment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountComment)
-        </dd>
     </dl>
 </div>
+<thead>
+    <tr>
+        <th>
+            @*Html.DisplayNameFor(Ledger => )*@
+        </th>
+    </tr>
+</thead>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-    <a asp-action="ViewJournalEntry" asp-route-id="@Model?.Id">PR</a>
+    <a asp-action="Index">Back to List</a> |
+    <a asp-action="Details" asp-controller="Entry" asp-route-id="@Model?.entryId">PR</a>
 </div>
