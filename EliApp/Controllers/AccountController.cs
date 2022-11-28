@@ -10,6 +10,7 @@ using EliApp.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Dynamic;
 
 namespace EliApp.Controllers
 {
@@ -43,7 +44,7 @@ namespace EliApp.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Ledgers"] = GetLedgers(id);
             return View(accountModel);
         }
 
@@ -196,6 +197,19 @@ namespace EliApp.Controllers
         {
             //Find the associated Journal Entry and return its "Details" View
             return View(_context.EntryModel.Find());
+        }
+
+        private List<LedgerModel> GetLedgers(int? id)
+        {
+            List<LedgerModel> ledgers = new List<LedgerModel>(); ;
+            foreach (LedgerModel ledger in _context.LedgerModel.ToList())
+            {
+                if(ledger.accountID == id)
+                {
+                    ledgers.Add(ledger);
+                }
+            }
+            return ledgers;
         }
     }
 }

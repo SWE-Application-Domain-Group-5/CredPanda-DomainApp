@@ -1,8 +1,16 @@
 ﻿@model EliApp.Models.AccountModel
 @{
     ViewData["Title"] = "Account Details";
+    IEnumerable<LedgerModel> Ledgers = ViewData["Ledgers"] as IEnumerable<LedgerModel>;
 }
 @*inject LedgerModel Ledger*@
+@inject IEnumerable<EliApp.Models.LedgerModel> LedgerModel
+
+<style>
+table, th, td {
+  border:2px solid black;
+}
+</style>
 <h1>Account Details</h1>
 <div>
     <hr />
@@ -81,13 +89,64 @@
         </dd>
     </dl>
 </div>
-<thead>
+
+<hr />
+<h2>Associated Ledgers</h2>
+
+<table style="width:50%">
     <tr>
-        <th>
-            @*Html.DisplayNameFor(Ledger => )*@
-        </th>
+        <th>Date</th>
+        <th>Account</th>
+        <th>Debits</th>
+        <th>Credits</th>
+        <th>PR </th>
     </tr>
-</thead>
+    @foreach(LedgerModel ledger in Ledgers)
+    {
+        if (ledger.creditAmount == 0)
+        {
+            <tr>
+                <td>
+                    @ledger.date
+                </td>
+                <td>
+                    To 
+                    @ledger.associatedAccountName
+                </td>
+                <td>
+                    @ledger.debitAmount
+                </td>
+                <td>
+                    @ledger.creditAmount
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Entry" asp-route-id="@ledger.journalEntryID">Journal Entry</a>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>
+                    @ledger.date
+                </td>
+                <td>
+                    By 
+                    @ledger.associatedAccountName
+                </td>
+                <td>
+                    @ledger.debitAmount
+                </td>
+                <td>
+                    @ledger.creditAmount
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Entry" asp-route-id="@ledger.journalEntryID">Journal Entry</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |

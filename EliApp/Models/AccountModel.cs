@@ -83,5 +83,10 @@ namespace EliApp.Models
         [AllowNull]
         [ValidateNever]
         public int entryId { get; set; }
+        /* List of LedgerModels. Don't know if it'll work rn.
+        [AllowNull]
+        [ValidateNever]
+        public List<LedgerModel> LedgerList { get; set;}
+        */
     }
 }
