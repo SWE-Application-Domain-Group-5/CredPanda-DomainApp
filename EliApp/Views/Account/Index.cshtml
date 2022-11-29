@@ -74,10 +74,10 @@
                 @Html.DisplayFor(modelItem => item.AccountSubcategory)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AccountInitialBalance)
+                @item.AccountInitialBalance.ToString("C")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AccountCurrentBalance)
+                @item.AccountCurrentBalance.ToString("C")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AccountCreationTime)

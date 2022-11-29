@@ -73,10 +73,10 @@
                 @Html.DisplayFor(modelItem => item.state)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.amount)
+                @Html.DisplayFor(modelItem => item.amount.ToString("C"))
             </td>
             <td>
-                -@Html.DisplayFor(modelItem => item.amount)
+                -@Html.DisplayFor(modelItem => item.amount.ToString("C"))
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">View Entry</a>
@@ -86,17 +86,22 @@
     </tbody>
     <tbody>
         <tr>
-            <td>Total Balance</td>
+            <td><b>Total Balance</b></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            @{
+                double balanceTotal = 0;
+                foreach (var item in Model)
+                {
+                    balanceTotal += item.amount;
+                }
+                <td> @balanceTotal.ToString("C") </td>
+                <td> -@balanceTotal.ToString("C") </td>
+            }
             
-            <td>
-            </td>
         </tr>
     </tbody>
 </table>

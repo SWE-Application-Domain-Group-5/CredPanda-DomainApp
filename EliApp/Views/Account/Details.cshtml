@@ -55,13 +55,13 @@ table, th, td {
             @Html.DisplayNameFor(model => model.AccountInitialBalance)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountInitialBalance)
+            @Model.AccountInitialBalance.ToString("C")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AccountCurrentBalance)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountCurrentBalance)
+            @Model.AccountCurrentBalance.ToString("C")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AccountCreationTime)
@@ -114,10 +114,10 @@ table, th, td {
                     @ledger.associatedAccountName
                 </td>
                 <td>
-                    @ledger.debitAmount
+                    @ledger.debitAmount.ToString("C")
                 </td>
                 <td>
-                    @ledger.creditAmount
+                    @ledger.creditAmount.ToString("C")
                 </td>
                 <td>
                     <a asp-action="Details" asp-controller="Entry" asp-route-id="@ledger.journalEntryID">Journal Entry</a>
@@ -135,10 +135,10 @@ table, th, td {
                     @ledger.associatedAccountName
                 </td>
                 <td>
-                    @ledger.debitAmount
+                    @ledger.debitAmount.ToString("C")
                 </td>
                 <td>
-                    @ledger.creditAmount
+                    @ledger.creditAmount.ToString("C")
                 </td>
                 <td>
                     <a asp-action="Details" asp-controller="Entry" asp-route-id="@ledger.journalEntryID">Journal Entry</a>
