@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Security.Cryptography;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using EliApp.Controllers;
+
 
 namespace EliApp.Models
 {
@@ -59,17 +61,13 @@ namespace EliApp.Models
         [DisplayName("Account #")]
         public string AccountNumber { get; set; }
         [DisplayName("Description")]
-        [AllowNull]
-        [ValidateNever]
-        public string AccountDescription { get; set; }
+        public string? AccountDescription { get; set; }
         [DisplayName("Type")]
         public AccountType AccountType { get; set; } //debit or credit
         [DisplayName("Category")]
         public AccountCategory AccountCategory { get; set; }
         [DisplayName("Subcategory")]
-        [AllowNull]
-        [ValidateNever]
-        public string AccountSubcategory { get; set; }
+        public string? AccountSubcategory { get; set; }
         [DisplayName("Initial Balance")]
         public float AccountInitialBalance { get; set; }
         [DisplayName("Current Balance")]
@@ -86,10 +84,5 @@ namespace EliApp.Models
         [AllowNull]
         [ValidateNever]
         public int entryId { get; set; }
-        /* List of LedgerModels. Don't know if it'll work rn.
-        [AllowNull]
-        [ValidateNever]
-        public List<LedgerModel> LedgerList { get; set;}
-        */
     }
 }

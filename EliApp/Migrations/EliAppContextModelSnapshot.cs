@@ -129,7 +129,6 @@ namespace EliApp.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("AccountDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("AccountInitialBalance")
@@ -143,18 +142,19 @@ namespace EliApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AccountOrder")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountOrder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("AccountStatement")
                         .HasColumnType("int");
 
                     b.Property<string>("AccountSubcategory")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AccountType")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AccountUserID")
                         .IsRequired()
@@ -165,7 +165,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccountModel", (string)null);
+                    b.ToTable("AccountModel");
                 });
 
             modelBuilder.Entity("EliApp.Models.EntryModel", b =>
@@ -210,7 +210,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EntryModel", (string)null);
+                    b.ToTable("EntryModel");
                 });
 
             modelBuilder.Entity("EliApp.Models.LedgerModel", b =>

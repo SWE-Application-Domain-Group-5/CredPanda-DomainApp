@@ -4,6 +4,14 @@
     ViewData["Title"] = "Chart of Accounts";
 }
 
+@using (Html.BeginForm())
+{
+    <div class="input-group-text">
+        Find: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+}
+
 <h1>Chart of Accounts</h1>
 
 

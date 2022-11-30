@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EliApp.Migrations
 {
     [DbContext(typeof(EliAppContext))]
-    [Migration("20221116225722_Added userID to EntryModel")]
-    partial class AddeduserIDtoEntryModel
+    [Migration("20221118012905_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
