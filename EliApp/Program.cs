@@ -1,5 +1,6 @@
 using EliApp.Areas.Identity.Data;
 using EliApp.Data;
+using EliApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

@@ -57,9 +57,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.AccountStatement)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AccountComment)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -70,7 +67,7 @@
                 @Html.DisplayFor(modelItem => item.AccountName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AccountNumber)
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.AccountNumber)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AccountDescription)
@@ -85,10 +82,10 @@
                 @Html.DisplayFor(modelItem => item.AccountSubcategory)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AccountInitialBalance)
+                @item.AccountInitialBalance.ToString("C")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AccountCurrentBalance)
+                @item.AccountCurrentBalance.ToString("C")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AccountCreationTime)
@@ -103,11 +100,7 @@
                 @Html.DisplayFor(modelItem => item.AccountStatement)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AccountComment)
-            </td>
-            <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
