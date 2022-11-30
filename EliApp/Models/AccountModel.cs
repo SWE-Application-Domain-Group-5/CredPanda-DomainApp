@@ -59,6 +59,8 @@ namespace EliApp.Models
         [DisplayName("Account #")]
         public string AccountNumber { get; set; }
         [DisplayName("Description")]
+        [AllowNull]
+        [ValidateNever]
         public string AccountDescription { get; set; }
         [DisplayName("Type")]
         public AccountType AccountType { get; set; } //debit or credit
@@ -66,6 +68,7 @@ namespace EliApp.Models
         public AccountCategory AccountCategory { get; set; }
         [DisplayName("Subcategory")]
         [AllowNull]
+        [ValidateNever]
         public string AccountSubcategory { get; set; }
         [DisplayName("Initial Balance")]
         public float AccountInitialBalance { get; set; }

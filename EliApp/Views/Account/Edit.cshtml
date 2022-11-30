@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AccountNumber" class="control-label"></label>
-                <input asp-for="AccountNumber" class="form-control" />
+                <input asp-for="AccountNumber" class="form-control" readonly/>
                 <span asp-validation-for="AccountNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AccountCategory" class="control-label"></label>
-                <input asp-for="AccountCategory" class="form-control" />
+                <select asp-for="AccountCategory" class="form-control" asp-items="Html.GetEnumSelectList<AccountCategory>()"></select>
                 <span asp-validation-for="AccountCategory" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,22 +44,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="AccountInitialBalance" class="control-label"></label>
-                <input asp-for="AccountInitialBalance" class="form-control" />
+                <input asp-for="AccountInitialBalance" class="form-control" readonly/>
                 <span asp-validation-for="AccountInitialBalance" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AccountCurrentBalance" class="control-label"></label>
-                <input asp-for="AccountCurrentBalance" class="form-control" />
+                <input asp-for="AccountCurrentBalance" class="form-control" readonly />
                 <span asp-validation-for="AccountCurrentBalance" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AccountCreationTime" class="control-label"></label>
-                <input asp-for="AccountCreationTime" class="form-control" />
+                <input asp-for="AccountCreationTime" class="form-control" readonly/>
                 <span asp-validation-for="AccountCreationTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AccountOrder" class="control-label"></label>
-                <input asp-for="AccountOrder" class="form-control" />
+                <input asp-for="AccountOrder" class="form-control" readonly />
                 <span asp-validation-for="AccountOrder" class="text-danger"></span>
             </div>
             <div class="form-group">

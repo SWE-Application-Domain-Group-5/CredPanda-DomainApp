@@ -165,7 +165,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccountModel");
+                    b.ToTable("AccountModel", (string)null);
                 });
 
             modelBuilder.Entity("EliApp.Models.EntryModel", b =>
@@ -210,7 +210,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EntryModel");
+                    b.ToTable("EntryModel", (string)null);
                 });
 
             modelBuilder.Entity("EliApp.Models.LedgerModel", b =>
@@ -249,7 +249,7 @@ namespace EliApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LedgerModel");
+                    b.ToTable("LedgerModel", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -73,10 +73,10 @@
                 @Html.DisplayFor(modelItem => item.state)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.amount.ToString("C"))
+                @item.amount.ToString("C")
             </td>
             <td>
-                -@Html.DisplayFor(modelItem => item.amount.ToString("C"))
+                -@item.amount.ToString("C")
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">View Entry</a>
