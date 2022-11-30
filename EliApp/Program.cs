@@ -1,7 +1,12 @@
 using EliApp.Areas.Identity.Data;
 using EliApp.Data;
+using EliApp.Models;
+using MailKit;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +23,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddRazorPages();
-
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -49,3 +53,5 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+

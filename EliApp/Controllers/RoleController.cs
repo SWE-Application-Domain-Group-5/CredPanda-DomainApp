@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using EliApp.ViewModels;
 using EliApp.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace EliApp.Controllers
 {
@@ -19,13 +21,13 @@ namespace EliApp.Controllers
             this.roleManager = roleManager;
             this.userManager = userManager;
         }
-
+ 
         [HttpGet]
         public IActionResult CreateRole()
         {
             return View();
         }
-
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
@@ -51,14 +53,14 @@ namespace EliApp.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult ListRoles()
         {
             var roles = roleManager.Roles;
             return View(roles);
         }
-
+        [Authorize(Roles = "Administrator")]
         // Role ID is passed from the URL to the action
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
@@ -92,7 +94,7 @@ namespace EliApp.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "Administrator")]
         // This action responds to HttpPost and receives EditRoleViewModel
         [HttpPost]
         public async Task<IActionResult> EditRole(EditRoleViewModel model)
@@ -124,7 +126,7 @@ namespace EliApp.Controllers
                 return View(model);
             }
         }
-
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public async Task<IActionResult> EditUsersInRole(string roleId)
         {
@@ -162,7 +164,7 @@ namespace EliApp.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string roleId)
         {

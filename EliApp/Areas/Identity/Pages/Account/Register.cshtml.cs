@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
@@ -80,7 +82,7 @@ namespace EliApp.Areas.Identity.Pages.Account
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         /// 
-   
+
         public class InputModel
         {
             //Added first name and last name, etc - Eli
@@ -139,6 +141,41 @@ namespace EliApp.Areas.Identity.Pages.Account
             */
         }
 
+        public static void SendEmail(string emailBody)
+        {
+            try
+            {
+                     MailAddress to = new MailAddress("credpandat5@yahoo.com");
+                     MailAddress from = new MailAddress("credpandat5@yahoo.com");
+                     MailMessage mailMessage = new MailMessage(from, to);
+                     mailMessage.Subject = "Login Confirmation";
+                     mailMessage.Body = emailBody;
+                     mailMessage.BodyEncoding = Encoding.UTF8;
+                     mailMessage.IsBodyHtml = true;
+
+                     SmtpClient smtpClient = new SmtpClient("smtp.mail.yahoo.com", 465);
+                     smtpClient.UseDefaultCredentials = false;
+                     smtpClient.Credentials = new System.Net.NetworkCredential("credpandat5@yahoo.com", "Te$tMail5");
+                     smtpClient.EnableSsl = true;
+
+
+                      smtpClient.Send(mailMessage); 
+
+         /*       MailMessage MyMailMessage = new MailMessage();
+                MyMailMessage.Subject = "Email testing";
+                MyMailMessage.From = new MailAddress("credpandat5@yahoo.com", "CredPanda");
+                MyMailMessage.To.Add(new MailAddress("credpandat5@yahoo.com", "CredPanda"));
+
+                SmtpClient mySmtpClient = new SmtpClient("smtp.mail.yahoo.com", 465);
+                mySmtpClient.EnableSsl = true;
+                mySmtpClient.Send(MyMailMessage);   */
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -160,7 +197,10 @@ namespace EliApp.Areas.Identity.Pages.Account
                 user.Address = Input.Address;
                 user.DOB = Input.DOB;
                 user.RegisterDate = DateTime.Now;
+                user.passwordChangedDate = DateTime.Now;
+                user.expireDate = user.passwordChangedDate.AddDays(365);
 
+                //Create path name for profile picture
                 var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
                 using (var fileStream = new FileStream(file, FileMode.Create))
                 {
@@ -170,10 +210,10 @@ namespace EliApp.Areas.Identity.Pages.Account
 
                 user.Email = Input.Email;
                 user.isActive = false; //added user's activation status, default is false - Rasul
-                
+
                 #region Generate Username
                 //Take the first letter from the first name
-                string sb = new string(user.FirstName.ToLower().Substring(0,1));
+                string sb = new string(user.FirstName.ToLower().Substring(0, 1));
                 //Take the whole of the last name
                 sb += (user.LastName.ToLower());
                 //Add in the date as needed
@@ -181,7 +221,7 @@ namespace EliApp.Areas.Identity.Pages.Account
 
                 string[] date = user.RegisterDate.ToShortDateString().Split('/');
                 //Get the month portion
-                if (date[0].Length < 2) 
+                if (date[0].Length < 2)
                 {
                     string temp = "0";
                     temp += date[0];
@@ -189,14 +229,15 @@ namespace EliApp.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    sb+= date[0];
+                    sb += date[0];
                 }
                 //Get the last two digits of the year
                 sb += date[2].Substring(2, 2);
 
                 //Set the username to the created string and return it
-                user.GeneratedUserName= sb.ToString();
+                user.GeneratedUserName = sb.ToString();
                 #endregion
+
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -204,8 +245,9 @@ namespace EliApp.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    SendEmail("Registration Confirmation");
                     _logger.LogInformation("User created a new account with password.");
-                    //user.oldPasswords.Add(Input.Password);
+                    //user.oldPasswords.Add(Input.Password);                   
 
                     var defaultrole = _roleManager.FindByNameAsync("User").Result; //added default role - Eli
 
@@ -223,8 +265,40 @@ namespace EliApp.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
+ //                   SendEmail("Please confirm your account by clicking here</a>.");
+
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+
+      /*              #region Confirm Email
+                    public static void SendEmail(string emailBody)
+                    {
+                        MailAddress to = new MailAddress("anisleyvera13@gmail.com");
+                        MailAddress from = new MailAddress("credpandat5@gmail.com");
+                        MailMessage mailMessage = new MailMessage(from, to);
+                        mailMessage.Subject = "Login Confirmation";
+                        mailMessage.Body = emailBody;
+                        mailMessage.BodyEncoding = Encoding.UTF8;
+                        mailMessage.IsBodyHtml = true;
+
+                        SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new System.Net.NetworkCredential("credpandat5", "Te$tMail5");
+                        smtpClient.EnableSsl = true;
+
+                        try
+                        {
+                            smtpClient.Send(mailMessage);
+                        }
+                        catch (SmtpException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
+
+                    }
+                    #endregion
+      */
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -271,3 +345,4 @@ namespace EliApp.Areas.Identity.Pages.Account
         }
     }
 }
+

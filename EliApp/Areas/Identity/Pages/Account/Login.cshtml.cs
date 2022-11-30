@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using EliApp.Areas.Identity.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -14,7 +15,12 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Security.Principal;
 using EliApp.Areas.Identity.Data;
+using System.Net.Mail;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace EliApp.Areas.Identity.Pages.Account
 {
@@ -29,6 +35,7 @@ namespace EliApp.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
+  //      public DateTime expireDate = EliAppUser.expireDate;
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -85,6 +92,42 @@ namespace EliApp.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+        public static void SendEmail(string emailBody)
+        {
+            try
+            {
+                   MailAddress to = new MailAddress("credpandat5@yahoo.com");
+                   MailAddress from = new MailAddress("credpandat5@yahoo.com");
+                   MailMessage mailMessage = new MailMessage(from, to);
+                   mailMessage.Subject = "Login Confirmation";
+                   mailMessage.Body = emailBody;
+                   mailMessage.BodyEncoding = Encoding.UTF8;
+                   mailMessage.IsBodyHtml = true;
+
+                   SmtpClient smtpClient = new SmtpClient("smtp.mail.yahoo.com", 465);
+                   smtpClient.UseDefaultCredentials = false;
+                   smtpClient.Credentials = new System.Net.NetworkCredential("credpandat5@yahoo.com", "Te$tMail5");
+                   smtpClient.EnableSsl = true;
+
+
+                       smtpClient.Send(mailMessage); 
+
+           /*     MailMessage MyMailMessage = new MailMessage();
+                MyMailMessage.Subject = "Email testing";
+                MyMailMessage.From = new MailAddress("credpandat5@yahoo.com", "CredPanda");
+                MyMailMessage.To.Add(new MailAddress("credpandat5@yahoo.com", "CredPanda"));
+
+                SmtpClient mySmtpClient = new SmtpClient("smtp.mail.yahoo.com", 465);
+                mySmtpClient.EnableSsl = true;
+                mySmtpClient.Send(MyMailMessage);   */
+            }
+            catch(SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
+        }
+  
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -115,8 +158,16 @@ namespace EliApp.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    //                  if (expireDate < DateTime.Now.AddDays(3))
+                    //                  {
+
+                    //return LocalRedirect("~/Identity/Account/Manage/ChangePassword");
+                    //                 }
+                    //                 else {
+                    SendEmail("Login Successful");
                     return LocalRedirect(returnUrl);
+                    //                }
+               
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -133,6 +184,7 @@ namespace EliApp.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
+
 
             // If we got this far, something failed, redisplay form
             return Page();

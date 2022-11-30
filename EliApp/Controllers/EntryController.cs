@@ -227,9 +227,9 @@ namespace EliApp.Controllers
             
         }
 
-        /*
-         * 
-         * var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
+        
+         
+        /* var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
                 using (var fileStream = new FileStream(file, FileMode.Create))
                 {
                     await Upload.CopyToAsync(fileStream);
