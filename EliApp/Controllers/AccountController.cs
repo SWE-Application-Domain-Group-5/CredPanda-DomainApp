@@ -100,7 +100,7 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement")] AccountModel accountModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountUserID,AccountOrder,AccountStatement")] AccountModel accountModel)
         {
             if (id != accountModel.Id)
             {
@@ -111,6 +111,9 @@ namespace EliApp.Controllers
             {
                 try
                 {
+                    accountModel.AccountUserID = User.Identity.Name; 
+                    if (accountModel.AccountDescription == null) { accountModel.AccountDescription = "None"; }
+                    if (accountModel.AccountSubcategory == null) { accountModel.AccountSubcategory = "None"; }
                     _context.Update(accountModel);
                     await _context.SaveChangesAsync();
                 }
