@@ -1,5 +1,4 @@
 ﻿using EliApp.Areas.Identity.Data;
-//using EliApp.Migrations;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
@@ -52,7 +51,6 @@ namespace EliApp.Models
         public EntryState state { get; set; }
         [Display(Name = "Amount")]
         [Column(TypeName = "decimal(18, 2)")]
-        [Display(Name = "Amount")]
         public float amount { get; set; }
         [AllowNull]
         [Display(Name = "Comments")]
