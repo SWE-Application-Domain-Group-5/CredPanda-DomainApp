@@ -31,36 +31,33 @@
 
     <!--Display Journal: Pending, Approval, Declined-->
 
-    @functions{
-        public EntryState state()
-        {
 
 
-            return EntryState.PENDING;
+ 
+
+
+    @{
+        if (Model.state == EntryState.PENDING) {
+            
+        <p>Journal Entry is: </p>
+        <a asp-action="Pending" asp-route-id="@Model.state" type="submit" class="btn btn-primary">Pending</a>
+            }else{
+ <p>There are no Pending Journal Entries</p>
+                }
+            }
         }
-    }
-    <div>Journal Entry is: @state()</div>
 
+    <!--Landing Page: Animated Image-->
 
-</div>
-
-
-
-
-
-
-
-<!--Landing Page: Animated Image-->
-
-<div class="position-absolute top-1 end-0 translate-middle-y">
-    <div class="top1">
-        <div class="row">
-            <div class="hi1">
-                <img src="https://www.pngitem.com/pimgs/b/175-1751228_ecommerce-images-png.png" class="img-responsive " alt="">
+    <div class="position-absolute top-1 end-0 translate-middle-y">
+        <div class="top1">
+            <div class="row">
+                <div class="hi1">
+                    <img src="https://www.pngitem.com/pimgs/b/175-1751228_ecommerce-images-png.png" class="img-responsive " alt="">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
