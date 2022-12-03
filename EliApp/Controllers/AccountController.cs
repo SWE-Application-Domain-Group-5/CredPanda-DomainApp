@@ -9,6 +9,8 @@ using EliApp.Data;
 using EliApp.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Dynamic;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using EliApp.Areas.Identity.Data;
@@ -20,6 +22,7 @@ namespace EliApp.Controllers
     public class AccountController : Controller
     {
         private readonly EliAppContext _context;
+        private AccountModel oldAccount; //This will hold the 'before' snapshot of any changes to an account - Rasul
         private readonly UserManager<EliAppUser> _userManager;
 
         public AccountController(EliAppContext context)
@@ -63,7 +66,7 @@ namespace EliApp.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Ledgers"] = GetLedgers(id);
             return View(accountModel);
         }
 
@@ -80,8 +83,11 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,DisplayInitialBalance,DisplayCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
+        public async Task<IActionResult> Create([Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,DisplayInitialBalance,DisplayCurrentBalance,AccountCreationTime,AccountOrder,AccountStatement")] AccountModel accountModel)
         {
+            accountModel.AccountUserID = User.Identity.Name;
+            //Later - Add a quick Find algorithm to change the email into the generated username - Rasul
+            accountModel.AccountCurrentBalance = accountModel.AccountInitialBalance;
             if (ModelState.IsValid)
             {
                 _context.Add(accountModel);
@@ -105,6 +111,10 @@ namespace EliApp.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                oldAccount = accountModel;
+            }
             return View(accountModel);
         }
 
@@ -113,7 +123,7 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountCreationTime,AccountUserID,AccountOrder,AccountStatement,AccountComment")] AccountModel accountModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountName,AccountNumber,AccountDescription,AccountType,AccountCategory,AccountSubcategory,AccountInitialBalance,AccountCurrentBalance,AccountUserID,AccountOrder,AccountStatement")] AccountModel accountModel)
         {
             if (id != accountModel.Id)
             {
@@ -124,7 +134,9 @@ namespace EliApp.Controllers
             {
                 try
                 {
-                    //accountModel.DisplayInitialBalance = accountModel.AccountInitialBalance.ToString();
+                    accountModel.AccountUserID = User.Identity.Name; 
+                    if (accountModel.AccountDescription == null) { accountModel.AccountDescription = "None"; }
+                    if (accountModel.AccountSubcategory == null) { accountModel.AccountSubcategory = "None"; }
                     _context.Update(accountModel);
                     await _context.SaveChangesAsync();
                 }
@@ -171,7 +183,7 @@ namespace EliApp.Controllers
         {
             if (_context.AccountModel == null)
             {
-                return Problem("Entity set 'EliAppContext.AccountModel'  is null.");
+                return Problem("Entity set 'EliAppContext.AccountModel' is null.");
             }
             var accountModel = await _context.AccountModel.FindAsync(id);
             if (accountModel != null)
@@ -189,6 +201,7 @@ namespace EliApp.Controllers
         }
 
         public async Task<AccountModel> CreateNewAccount(AccountModel model)
+
         {
             var newAccount = new AccountModel()
             {
@@ -203,7 +216,6 @@ namespace EliApp.Controllers
                 AccountCurrentBalance = model.AccountCurrentBalance,
                 AccountOrder = model.AccountOrder,
                 AccountStatement = model.AccountStatement,
-                AccountComment = model.AccountComment,
                 AccountCreationTime = DateTime.Today
             };
             _context.Add(newAccount);
@@ -216,5 +228,17 @@ namespace EliApp.Controllers
             return View(_context.EntryModel.Find());
         }
 
+        private List<LedgerModel> GetLedgers(int? id)
+        {
+            List<LedgerModel> ledgers = new List<LedgerModel>(); ;
+            foreach (LedgerModel ledger in _context.LedgerModel.ToList())
+            {
+                if(ledger.accountID == id)
+                {
+                    ledgers.Add(ledger);
+                }
+            }
+            return ledgers;
+        }
     }
 }

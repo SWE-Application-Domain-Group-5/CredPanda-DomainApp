@@ -1,9 +1,6 @@
 ﻿@model EliApp.Models.EntryModel
-@inject SignInManager<EliApp.Areas.Identity.Data.EliAppUser> SignInManager
-@inject UserManager<EliApp.Areas.Identity.Data.EliAppUser> UserManager
 
 @{
-    //var user = await UserManager.GetUserAsync(User);
     ViewData["Title"] = "Create";
 }
 
@@ -27,26 +24,37 @@
             <div class="form-group">
                 <label asp-for="accountInvolved" class="control-label">Account Involved</label>
                 <input asp-for="accountInvolved" class="form-control" />
+                <label asp-for="account1" class="control-label">Account 1</label>
+                <input asp-for="account1" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="account2" class="control-label">Account 2</label>
+                @*<input asp-for="account2" class="form-control" />*@
+                <select asp-for="account2" class="form-control" asp-items="@(new SelectList(ViewBag.message, "Id", "AccountName"))"></select>
+                <span asp-validation-for="account2" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="accountType" class="control-label">Type of Account</label>
-                <select asp-for="accountType" class="form-control">
-                    <option>Debit</option>
-                    <option>Credit</option>
-                </select>
+                <select asp-for="accountType" class="form-control" asp-items="Html.GetEnumSelectList<AccountType>()"></select>
             </div>
             <div class="form-group">
                 <label asp-for="amount" class="control-label">Amount</label>
                 <input asp-for="amount" class="form-control" />
                 <span asp-validation-for="amount" class="text-danger"></span>
             </div>
+            @*Supporting File Uploading*@
+            <div>
+                Supporting File
+                <input asp-for="supportingFile" class="form-control" />
+            </div>
+            @* Uploading method 1
             <form enctype="multipart/form-data" method="post">
                 <dl>
                     <dt>
-                        <label asp-for="EntryUpload"></label>
+                        Upload Supporting File
                     </dt>
                     <dd>
-                        <input asp-for="EntryUpload" type="file">
+                        <input asp-for="EntryUpload" type="file"/>
                     </dd>
                 </dl>
                 <input asp-page-handler="EntryUpload" class="btn btn-primary" type="submit" value="EntryUpload" />
@@ -56,6 +64,14 @@
                     Supporting File: <input asp-for="Upload" type="file" />
                 </div>
             *@
+                <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="EntryUpload" />
+            </form>*@
+            
+            @* Uploading Method 2
+            <div class="form-group" accept=".txt,.pdf,.doc,.docx,.png,.jpg,.jpeg">
+                Supporting File: <input type="file" asp-for="supportingFile" />
+            </div>*@
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

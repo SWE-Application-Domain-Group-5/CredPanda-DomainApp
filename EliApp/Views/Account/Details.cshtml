@@ -1,12 +1,18 @@
 ﻿@model EliApp.Models.AccountModel
 @{
     ViewData["Title"] = "Account Details";
+    IEnumerable<LedgerModel> Ledgers = ViewData["Ledgers"] as IEnumerable<LedgerModel>;
 }
+@*inject LedgerModel Ledger*@
+@inject IEnumerable<EliApp.Models.LedgerModel> LedgerModel
 
+<style>
+table, th, td {
+  border:2px solid black;
+}
+</style>
 <h1>Account Details</h1>
-
 <div>
-    <h4>AccountModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -49,13 +55,13 @@
             @Html.DisplayNameFor(model => model.AccountInitialBalance)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountInitialBalance)
+            @Model.AccountInitialBalance.ToString("C")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AccountCurrentBalance)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountCurrentBalance)
+            @Model.AccountCurrentBalance.ToString("C")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AccountCreationTime)
@@ -81,16 +87,69 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AccountStatement)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccountComment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountComment)
-        </dd>
     </dl>
 </div>
+
+<hr />
+<h2>Associated Ledgers</h2>
+
+<table style="width:50%">
+    <tr>
+        <th>Date</th>
+        <th>Account</th>
+        <th>Debits</th>
+        <th>Credits</th>
+        <th>PR </th>
+    </tr>
+    @foreach(LedgerModel ledger in Ledgers)
+    {
+        if (ledger.creditAmount == 0)
+        {
+            <tr>
+                <td>
+                    @ledger.date
+                </td>
+                <td>
+                    To 
+                    @ledger.associatedAccountName
+                </td>
+                <td>
+                    @ledger.debitAmount.ToString("C")
+                </td>
+                <td>
+                    @ledger.creditAmount.ToString("C")
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Entry" asp-route-id="@ledger.journalEntryID">Journal Entry</a>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>
+                    @ledger.date
+                </td>
+                <td>
+                    By 
+                    @ledger.associatedAccountName
+                </td>
+                <td>
+                    @ledger.debitAmount.ToString("C")
+                </td>
+                <td>
+                    @ledger.creditAmount.ToString("C")
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Entry" asp-route-id="@ledger.journalEntryID">Journal Entry</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-    <a asp-action="ViewJournalEntry" asp-route-id="@Model?.Id">PR</a>
+    <a asp-action="Index">Back to List</a> |
+    <a asp-action="Details" asp-controller="Entry" asp-route-id="@Model?.entryId">PR</a>
 </div>

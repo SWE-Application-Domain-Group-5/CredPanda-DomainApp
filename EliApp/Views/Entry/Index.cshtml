@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<EliApp.Models.EntryModel>
 
 @{
-    ViewData["Title"] = "Journal";
+    ViewData["Title"] = "Index";
+    float total = 0;
+    foreach(var item in Model)
+    {
+        total += item.amount;
+    }
 }
 @using (Html.BeginForm())
 {
@@ -25,10 +30,16 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.DateTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.accountInvolved)
+                @Html.DisplayNameFor(model => model.account1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.account2)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.accountType)
@@ -37,7 +48,10 @@
                 @Html.DisplayNameFor(model => model.state)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.amount)
+                Dr.
+            </th>
+            <th>
+                Cr.
             </th>
             <th></th>
         </tr>
@@ -66,5 +80,56 @@
                 </td>
             </tr>
         }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Id) </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.account1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.account2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.accountType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @item.amount.ToString("C")
+            </td>
+            <td>
+                -@item.amount.ToString("C")
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">View Entry</a>
+            </td>
+        </tr>
+}
+    </tbody>
+    <tbody>
+        <tr>
+            <td><b>Total Balance</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            @{
+                double balanceTotal = 0;
+                foreach (var item in Model)
+                {
+                    balanceTotal += item.amount;
+                }
+                <td> @balanceTotal.ToString("C") </td>
+                <td> -@balanceTotal.ToString("C") </td>
+            }
+            
+        </tr>
     </tbody>
 </table>
