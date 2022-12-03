@@ -1,8 +1,70 @@
-﻿@{
+﻿@model EliApp.Models.EntryModel
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to CredPanda!</h1>
-    <p>Check out the <a href="https://github.com/SWE-Application-Domain-Group-5/CredPanda-DomainApp">GitHub Repository!</a></p>
+
+<!--Jumbotron: Gibhub Repository-->
+
+<div class="container">
+    <h1 class="text-dark">Welcome to CredPanda</h1>
+    <p class="lead">
+        CredPanda is here to make it easier for you.
+    </p>
+    <!--Link to the Respository.-->
+    <p class="lead text-dark">Check out the <a href="https://github.com/SWE-Application-Domain-Group-5/CredPanda-DomainApp" class="link-info">GitHub Repository!</a></p>
+
+    <a class="btn btn-info rounded-pill btn-lg" href="/Identity/Account/Register" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click Here to Get Started with CredPanda" role="button">Get Started</a>
 </div>
+
+
+
+
+<!--Dashboard-->
+<div class="container">
+    <h1 class="text-dark">Dashboard</h1>
+    <hr class="bg-info border-2 border-info">
+
+
+
+    <!--Display Journal: Pending, Approval, Declined-->
+
+    @functions{
+        public EntryState state()
+        {
+            return EntryState.PENDING;
+        }
+    }
+    <div>Journal Entry is: @state()</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!--Landing Page: Animated Image-->
+
+<div class="position-absolute top-1 end-0 translate-middle-y">
+    <div class="top1">
+        <div class="row">
+            <div class="hi1">
+                <img src="https://www.pngitem.com/pimgs/b/175-1751228_ecommerce-images-png.png" class="img-responsive " alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

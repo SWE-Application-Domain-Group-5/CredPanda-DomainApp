@@ -5,12 +5,17 @@
     ViewData["Title"] = "Log in";
 }
 
+
+
+
+
+
 <h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
+                <h2>Please Login.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
@@ -32,17 +37,17 @@
                     </div>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-info btn-primary">Log In</button>
                 </div>
                 <div>
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        <a id="forgot-password" asp-page="./ForgotPassword" style="color:black">Forgot your Password?</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="color:black">Register as a New User</a>
                     </p>
                     <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" style="color:black">Resend Email Confirmation</a>
                     </p>
                 </div>
             </form>
@@ -52,3 +57,8 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+
+
+
+<div class="container my-5"></div>

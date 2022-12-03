@@ -1,60 +1,120 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EliApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - Home Page - CredPanda</title>
+    <!--Eli App: links-->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EliApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!--BootStrap CSS-->
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/e44be1a57c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+    <!--CredPanda Logo-->
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/#">
+            <img src="~/images/CredPanda Logo.png" width="110" height="110" alt="">
+        </a>
+    </nav>
+
+
+    <!--Registration/Login-->
+    <div class="text-end">
+        <button type="button" class="btn btn-dark pull-right px-3" href="/Identity/Account/Register" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click Here to Register">Register</button>
+        <button type="button" class="btn btn-info pull-right px-3" href="/Identity/Account/Login" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click Here to Login">Log In</button>
+    </div>
+
+
+
+    <!--OffCanvas: Navigation & Navigation Side Bar-->
+
+    <section class="canva">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> 
-                    <img src="~/images/CredPanda Logo.png" alt="CredPanda Logo" height="150" width="auto"/></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" href="#offcanvasExample" role="button" data-bs-toggle="offcanvas" aria-controls="offcanvasExample">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="ListUsers">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="ListRoles">Roles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Accounts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Entry" asp-action="Index">Journal</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <a class="navbar-brand" href="/#">CredPanda</a>
+                        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                            <li class="nav-item px-3">
+                                <a class="nav-link" aria-current="page" href="/#" data-bs-toggle="tooltip" data-bs-placement="top" title="CredPanda - Home">Home</a>
+                            </li>
+                            <li class="nav-item px-3">
+                                <a class="nav-link" href="/Identity/Account/Login" data-bs-toggle="tooltip" data-bs-placement="top" title="User Account">User</a>
+                            </li>
+                            <li class="nav-item px-3">
+                                <a class="nav-link" href="/Role/ListRoles" data-bs-toggle="tooltip" data-bs-placement="top" title="Role">Role</a>
+                            </li>
+                            <li class="nav-item px-3">
+                                <a class="nav-link" href="/Entry" data-bs-toggle="tooltip" data-bs-placement="top" title="Journal Entry">Journal</a>
+                            </li>
+                            <li class="nav-item px-3">
+                                <a class="nav-link" href="/Help" data-bs-toggle="tooltip" data-bs-placement="top" title="Need Assistance? Click Here">Help</a>
+                            </li>
+                        </ul>
+
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-info btn-sm" type="submit">Search</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </nav>
-    </header>
+    </section>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!--Footer: CredPanda-->
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Group 5 - Application Domain - Kennesaw State University - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - Group 5 - Application Domain - Kennesaw State University - <a asp-area=""
+                                                                                        asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+
+
+
+
+
+

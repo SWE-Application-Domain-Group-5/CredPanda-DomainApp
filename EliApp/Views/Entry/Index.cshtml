@@ -18,6 +18,11 @@
 
 <h1>Journal</h1>
 
+
+<!--Print Entry Journal: Must contain a print button-->
+<input class="btn btn-info rounded-pill btn-md" type="button" value="Print Journal Entry" onclick="window.print();">
+
+
 <p>
     <a asp-action="Create">Write New Entry</a>
 </p>
@@ -101,6 +106,7 @@
                 <td> @balanceTotal.ToString("C") </td>
                 <td> -@balanceTotal.ToString("C") </td>
             }
+            <td></td>
             
         </tr>
     </tbody>

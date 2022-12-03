@@ -5,6 +5,20 @@
 }
 
 <header>
+
+
+    <!--CredPanda Logo Bar-->
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <a href="# class="navbar-brand mb-0 h1">
+            <!--Tool Tip: CredPanda Logo-->
+            <span class="tt" data-bs-placement="bottom" title="CredPanda">
+                <img class="d-inline-block align-top"
+                     src="~/images/CredPanda Logo.png" width="165" height="150" />
+        </a>
+        </span>
+
+
+    </nav>
     <h1>@ViewData["Title"]</h1>
     @{
         if (User.Identity.IsAuthenticated)
