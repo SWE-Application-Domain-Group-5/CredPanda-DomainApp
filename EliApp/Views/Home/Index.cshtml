@@ -1,5 +1,4 @@
-﻿@model EliApp.Models.EntryModel
-
+﻿@inject IEnumerable<EliApp.Models.EntryModel> EntryModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -31,11 +30,18 @@
 
     <!--Display Journal: Pending, Approval, Declined-->
 
+    @foreach (var item in EntryModel)
+    {
+        int count = 0;
+        if(item.state == EntryState.PENDING)
+        {
+            count += 1;
+            <div>There is @count entries pending</div>
+        }
+    }
 
 
- 
-
-
+@*
     @{
         if (Model.state == EntryState.PENDING) {
             
@@ -45,7 +51,7 @@
  <p>There are no Pending Journal Entries</p>
                 }
             }
-        }
+        }*@
 
     <!--Landing Page: Animated Image-->
 

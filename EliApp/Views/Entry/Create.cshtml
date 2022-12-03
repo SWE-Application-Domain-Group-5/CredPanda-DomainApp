@@ -11,16 +11,12 @@
 <!--Print Entry Journal: Must contain a print button-->
 <input class="btn btn-info rounded-pill btn-md" type="button" value="Print Journal Entry" onclick="window.print();">
 
-
+@*style="color:black"*@
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="userId" class="control-label"></label>
-                <input asp-for="userId" class="form-control" readonly />
-            </div>
             <div class="form-group">
                 <label asp-for="account1" class="control-label">Account 1</label>
                 <input asp-for="account1" class="form-control"/>
