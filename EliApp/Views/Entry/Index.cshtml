@@ -13,6 +13,11 @@
 
 <h1>Journal</h1>
 
+
+<!--Print Entry Journal: Must contain a print button-->
+<input class="btn btn-info rounded-pill btn-md" type="button" value="Print Journal Entry" onclick="window.print();">
+
+
 <p>
     <a asp-action="Create">Write New Entry</a>
 </p>
@@ -38,27 +43,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.accountInvolved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.accountType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.state)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.amount)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">View Entry</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.accountInvolved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.accountType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.state)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">View Entry</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

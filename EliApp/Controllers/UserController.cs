@@ -40,7 +40,7 @@ namespace EliApp.Controllers
             }
         }
 
-        
+
         public async Task<IActionResult> DeactivateUser(string id)
         {
             var user = await userManager.FindByIdAsync(id);
@@ -59,6 +59,9 @@ namespace EliApp.Controllers
             }
         }
 
+
+
+
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await userManager.FindByIdAsync(id);
@@ -76,7 +79,7 @@ namespace EliApp.Controllers
                 {
                     return RedirectToAction("ListUsers");
                 }
-                
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description = "");
@@ -97,7 +100,7 @@ namespace EliApp.Controllers
         {
             var user = await userManager.FindByIdAsync(id);
 
-            if(user == null)
+            if (user == null)
             {
                 ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
                 return View("NotFound");
@@ -141,17 +144,21 @@ namespace EliApp.Controllers
 
                 var result = await userManager.UpdateAsync(user);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("ListUsers");
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("",error.Description);
+                    ModelState.AddModelError("", error.Description);
                 }
 
                 return View(model);
             }
         }
+
+
+    
+
     }
 }

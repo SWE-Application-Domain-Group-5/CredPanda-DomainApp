@@ -10,6 +10,11 @@
 <h1>Create</h1>
 
 <h4>Make a New Entry</h4>
+
+<!--Print Entry Journal: Must contain a print button-->
+<input class="btn btn-info rounded-pill btn-md" type="button" value="Print Journal Entry" onclick="window.print();">
+
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="accountInvolved" class="control-label">Account Involved</label>
-                <input asp-for="accountInvolved" class="form-control"/>
+                <input asp-for="accountInvolved" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="accountType" class="control-label">Type of Account</label>
@@ -47,9 +52,9 @@
                 <input asp-page-handler="EntryUpload" class="btn btn-primary" type="submit" value="EntryUpload" />
             </form>
             @*
-            <div class="form-group" accept=".txt,.pdf,.doc,.docx,.png,.jpg,.jpeg">
-                Supporting File: <input asp-for="Upload" type="file" />
-            </div>
+                <div class="form-group" accept=".txt,.pdf,.doc,.docx,.png,.jpg,.jpeg">
+                    Supporting File: <input asp-for="Upload" type="file" />
+                </div>
             *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

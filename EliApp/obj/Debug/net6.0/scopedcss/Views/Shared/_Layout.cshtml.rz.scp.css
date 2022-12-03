@@ -1,0 +1,103 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+
+/*Full Website: Font and Margin*/
+*[b-py3hko9glz] {
+    color: white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
+/*Home-Item-User-Role-Journal-Help Link Font/Boldness/Position*/
+.nav-item[b-py3hko9glz] {
+    color: white;
+    position: center;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;;
+}
+
+/*Not Sure what this is..check later*/
+button.accept-policy[b-py3hko9glz] {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+
+
+/*Footer: CredPanda @Kennesaw - Application Domain 2022*/
+.footer[b-py3hko9glz] {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height:22px;
+}
+
+
+
+
+
+/*navigation bar: side bar*/
+.offcanvas[b-py3hko9glz] {
+    background: #AEC823;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+
+/*
+    .canva {
+    background: url("https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-johannes-plenio-1103970.jpg&fm=jpg&_gl=1*1tkm8l*_ga*MTkyNDYwMTA1MS4xNjY0OTgzODgz*_ga_8JE65Q40S6*MTY2ODc0MDI3OC4yMy4xLjE2Njg3NDAzNDMuMC4wLjA.") no-repeat; 
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+} */
+   
+
+
+/*.offcanvas {
+    background: rgb(112,112,168);
+}
+*/
+
+.navbar-toggler-icon[b-py3hko9glz] {
+    font-size: 20px;
+    color: #4982b6;
+}
+
+.navbar-toggler: focus[b-py3hko9glz] {
+    outline: none;
+    box-shadow: none;
+    color: #4982b6;
+}
+
+/*CredPanda Name on SideBar Navigation*/
+.navbar-brand[b-py3hko9glz] {
+    color: black;
+    font-size: 30px;
+}
+
+.navbar-nav a[b-py3hko9glz] {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: all 0.5s;
+}
+
+    .navbar-nav a:hover[b-py3hko9glz] {
+        color: black;
+    }
+
+
+
+
+
+
+
