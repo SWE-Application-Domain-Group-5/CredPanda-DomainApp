@@ -11,24 +11,46 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Dynamic;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using EliApp.Areas.Identity.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EliApp.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly EliAppContext _context;
         private AccountModel oldAccount; //This will hold the 'before' snapshot of any changes to an account - Rasul
+        private readonly UserManager<EliAppUser> _userManager;
 
         public AccountController(EliAppContext context)
         {
             _context = context;
+            UserManager<EliAppUser> userManager;
         }
 
         // GET: Account
+        // Stole from Rasul, thanks - Eli
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var accounts = from a in _context.AccountModel
+                          select a;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                accounts = accounts.Where(a => a.AccountName.Contains(searchString)
+                                       || a.AccountNumber.Contains(searchString));
+            }
+            return View(await accounts.ToListAsync());
+        }
+
+        // GET: Account
+        /* OLD GET METHOD
         public async Task<IActionResult> Index()
         {
             return View(await _context.AccountModel.ToListAsync());
-        }
+        }*/
 
         // GET: Account/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -69,6 +91,7 @@ namespace EliApp.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(accountModel);
+                accountModel.AccountCurrentBalance = accountModel.AccountInitialBalance;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -133,6 +156,7 @@ namespace EliApp.Controllers
             return View(accountModel);
         }
 
+        [Authorize(Roles = "Administrator, Manager")]
         // GET: Account/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -151,6 +175,7 @@ namespace EliApp.Controllers
             return View(accountModel);
         }
 
+        [Authorize(Roles = "Administrator, Manager")]
         // POST: Account/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -175,7 +200,8 @@ namespace EliApp.Controllers
           return _context.AccountModel.Any(e => e.Id == id);
         }
 
-        public async Task<string> CreateNewAccount(AccountModel model)
+        public async Task<AccountModel> CreateNewAccount(AccountModel model)
+
         {
             var newAccount = new AccountModel()
             {
@@ -194,7 +220,7 @@ namespace EliApp.Controllers
             };
             _context.Add(newAccount);
             await _context.SaveChangesAsync();
-            return model.AccountNumber;
+            return model;
         }
         public async Task<IActionResult> ViewJournalEntry(string id)
         {

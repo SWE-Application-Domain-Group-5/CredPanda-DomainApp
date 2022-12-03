@@ -146,7 +146,6 @@ namespace EliApp.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
-
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -161,12 +160,18 @@ namespace EliApp.Areas.Identity.Pages.Account
                 user.DOB = Input.DOB;
                 user.RegisterDate = DateTime.Now;
 
-                var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
-                using (var fileStream = new FileStream(file, FileMode.Create))
+                if (Upload != null)  
                 {
-                    await Upload.CopyToAsync(fileStream);
+                    var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
+                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    {
+                        await Upload.CopyToAsync(fileStream);
+                    }
+                    user.ProfilePicture = Upload.FileName;
                 }
-                user.ProfilePicture = Upload.FileName;
+                else
+                { user.ProfilePicture = "blankProfilePic.jpg"; }
+                
 
                 user.Email = Input.Email;
                 user.isActive = false; //added user's activation status, default is false - Rasul

@@ -44,18 +44,21 @@ namespace EliApp.Controllers
         // GET: Entry/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.EntryModel == null)
+            if (id == null || _context.EntryModel == null) //if the id given is null, or there are no entries in the database
             {
+                //return a Notfound error page
                 return NotFound();
             }
-
+            //function to find an entry model based on the id given
             var entryModel = await _context.EntryModel
                 .FirstOrDefaultAsync(m => m.Id == id);
+            //if the entry model returned is null
             if (entryModel == null)
             {
+                //return a Notfound error page
                 return NotFound();
             }
-
+            //return a viewing page with the identified entry model passed
             return View(entryModel);
         }
 
@@ -112,7 +115,7 @@ namespace EliApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DateTime,userId,account1,account2,accountType,Upload,amount,state,")] EntryModel entryModel)
+        public async Task<IActionResult> Create([Bind("Id,DateTime,userId,account1,account2,accountType,EntryUpload,amount,state,")] EntryModel entryModel)
         {
             if (ModelState.IsValid)
             {
@@ -189,43 +192,6 @@ namespace EliApp.Controllers
             return View(entryModel);
         }
 
-        // GET: Entry/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.EntryModel == null)
-            {
-                return NotFound();
-            }
-
-            var entryModel = await _context.EntryModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (entryModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(entryModel);
-        }
-
-        // POST: Entry/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.EntryModel == null)
-            {
-                return Problem("Entity set 'EliAppContext.EntryModel'  is null.");
-            }
-            var entryModel = await _context.EntryModel.FindAsync(id);
-            if (entryModel != null)
-            {
-                _context.EntryModel.Remove(entryModel);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool EntryModelExists(int id)
         {
           return _context.EntryModel.Any(e => e.Id == id);
@@ -239,9 +205,10 @@ namespace EliApp.Controllers
             if (entry != null)
             {
                 entry.state = EntryState.APPROVED;
-
+                //make two null accounts that will hold the information for the involved accounts
                 AccountModel account1 = null;
                 AccountModel account2 = null;
+                //make two new ledgers for both sides of the interaction
                 LedgerModel ledger1 = new LedgerModel()
                 {
                     description = "",
@@ -264,7 +231,7 @@ namespace EliApp.Controllers
                     debitAmount = 0,
                     creditAmount = 0,
                 };
-                foreach (var acc in _context.AccountModel) //try and match the account inputted to an existing one
+                foreach (var acc in _context.AccountModel) //try and match the frst account to an existing one
                 {
                     if (entry.account1 == acc.AccountName)
                     {
@@ -282,8 +249,9 @@ namespace EliApp.Controllers
                         break;
                     }
                 }
-                if (account1 == null) //Account 1 is a new account
+                if (account1 == null) //if account 1 is still null...
                 {
+                    //...then it is a new account
                     account1 = new AccountModel
                     {
                         AccountName = entry.account1,
@@ -310,12 +278,16 @@ namespace EliApp.Controllers
                         accnum += rand.Next(0, 9);
                     }
                     account1.AccountNumber = accnum;
+                    //Attach account ids to the ledgers
                     ledger1.accountID = account1.Id;
+                    ledger2.accountID = account2.Id;
+                    //Associated account names are for the accounts that are receiving/giving money. They are NOT the accounts the ledger will go under
                     ledger1.associatedAccountName = account2.AccountName;
                     ledger2.associatedAccountName = account1.AccountName;
 
-                    if (entry.accountType == AccountType.Debit) //money goes from account 2 to account 1
+                    if (entry.accountType == AccountType.Debit) //if the entry is a debit... 
                     {
+                        //then account 1 is a debit account and money goes from account 2 to account 1
                         account1.AccountType = AccountType.Debit;
                         ledger1.creditAmount = entry.amount;
                         ledger1.balance = account1.AccountCurrentBalance;
@@ -323,8 +295,9 @@ namespace EliApp.Controllers
                         ledger2.debitAmount = entry.amount;
                         ledger2.balance = account2.AccountCurrentBalance;
                     }
-                    else //money goes from account 1 to account 2
-                    { 
+                    else //otherwise... 
+                    {
+                        //the account is a credit and money goes from account 1 to account 2
                         account1.AccountType = AccountType.Credit;
                         ledger1.debitAmount = entry.amount;
                         ledger1.balance = account1.AccountCurrentBalance;
@@ -332,14 +305,20 @@ namespace EliApp.Controllers
                         ledger2.creditAmount = entry.amount;
                         ledger2.balance = account2.AccountCurrentBalance;
                     }
+                    //Add the new account to the database
                     _context.Add(account1);
                 }
-                else //Account 1 is not a new account
+                else //otherwise account 1 is not a new account
                 {
+                    //attach accountids to their corresponding ledgers
+                    ledger1.accountID = account1.Id;
+                    ledger2.accountID = account2.Id;
+                    //Associated account names are for the accounts that are receiving/giving money. They are NOT the accounts the ledger will go under
                     ledger1.associatedAccountName = account2.AccountName;
                     ledger2.associatedAccountName = account1.AccountName;
-                    if (entry.accountType == AccountType.Debit) //money goes from account 2 to account 1
+                    if (entry.accountType == AccountType.Debit) //if the entry is a debit... 
                     {
+                        //then account 1 is a debit account and money goes from account 2 to account 1
                         account1.AccountCurrentBalance += entry.amount;
                         ledger1.creditAmount = entry.amount;
                         ledger1.balance = account1.AccountCurrentBalance;
@@ -347,8 +326,9 @@ namespace EliApp.Controllers
                         ledger2.debitAmount = entry.amount;
                         ledger2.balance = account2.AccountCurrentBalance;
                     }
-                    else //money goes from account 1 to account 2
+                    else //otherwise... 
                     {
+                        //the account is a credit and money goes from account 1 to account 2
                         account1.AccountCurrentBalance -= entry.amount;
                         ledger1.debitAmount = entry.amount;
                         ledger1.balance = account1.AccountCurrentBalance;
@@ -356,8 +336,10 @@ namespace EliApp.Controllers
                         ledger2.creditAmount = entry.amount;
                         ledger2.balance = account2.AccountCurrentBalance;
                     }
+                    //Update account 1 in the database
                     _context.Update(account1);
                 }
+                //Add the ledgers to the database and update account 2 and the approved journal entry
                 _context.Add(ledger1);
                 _context.Add(ledger2);
                 _context.Update(account2);
@@ -413,15 +395,8 @@ namespace EliApp.Controllers
 
         }
 
-        public AccountModel MakeAccount(int id)
-        {
-            var account = new AccountModel();
-            return account;
-        }
-
-        /*
-         * 
-         * var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
+        /* Uploading functionality and username getting
+        var file = Path.Combine(_environment.WebRootPath, "uploads", Upload.FileName);
                 using (var fileStream = new FileStream(file, FileMode.Create))
                 {
                     await Upload.CopyToAsync(fileStream);

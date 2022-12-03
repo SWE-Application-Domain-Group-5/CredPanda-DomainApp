@@ -11,7 +11,8 @@ namespace EliApp.Controllers
     //I can't get this Authorize Statement to work properly with the roles. Don't know why.
     //For my tests, setting it to "Admin Only" restricted access completely
     //Setting it to anything else allowed free access sometimes. It's weird
-    [Authorize(Roles = "Admin")]
+    // Roles are named Administrator, Manager, and Accountant - Eli
+    [Authorize(Roles = "Administrator, Manager")]
     public class UserController : Controller
     {
         UserManager<EliAppUser> userManager;
