@@ -24,12 +24,6 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DateTime)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.accountInvolved)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.accountInvolved)
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.account1)
         </dt>
         <dd class = "col-sm-10">
@@ -113,14 +107,6 @@
     <a asp-action="Approved" asp-route-id="@Model.Id" type="submit" class="btn btn-primary">Approve</a> 
     <a asp-action="Declined" asp-route-id="@Model.Id" type="submit" class="btn btn-danger">Decline</a>
         
-    }
-    else
-    {
-    <div class="form-group">
-            <label asp-for="comment" class="control-label">Comments</label>
-            <input asp-for="comment" class="form-control" readonly/>
-            <span asp-validation-for="comment" class="text-danger"></span>
-    </div>
     }
 }
 

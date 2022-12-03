@@ -22,8 +22,6 @@
                 <input asp-for="userId" class="form-control" readonly />
             </div>
             <div class="form-group">
-                <label asp-for="accountInvolved" class="control-label">Account Involved</label>
-                <input asp-for="accountInvolved" class="form-control" />
                 <label asp-for="account1" class="control-label">Account 1</label>
                 <input asp-for="account1" class="form-control"/>
             </div>
@@ -57,13 +55,6 @@
                         <input asp-for="EntryUpload" type="file"/>
                     </dd>
                 </dl>
-                <input asp-page-handler="EntryUpload" class="btn btn-primary" type="submit" value="EntryUpload" />
-            </form>
-            @*
-                <div class="form-group" accept=".txt,.pdf,.doc,.docx,.png,.jpg,.jpeg">
-                    Supporting File: <input asp-for="Upload" type="file" />
-                </div>
-            *@
                 <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="EntryUpload" />
             </form>*@
             
