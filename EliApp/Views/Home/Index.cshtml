@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EliApp.Models.EntryModel>
+@model IEnumerable<EliApp.Models.EntryModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -6,27 +6,31 @@
 
 
 <!--Jumbotron: Gibhub Repository-->
+<h1>Welcome to CredPanda</h1>
+<p class="lead front-page link-dark">
+    CredPanda is here to make it easier for you.
+</p>
+
+<!--Link to the Respository.-->
+<p class="lead">Check out the <a href="https://github.com/SWE-Application-Domain-Group-5/CredPanda-DomainApp" class="link-info">GitHub Repository!</a></p>
 
 <div class="container">
-    <h1 class="text-dark">Welcome to CredPanda</h1>
-    <p class="lead">
-        CredPanda is here to make it easier for you.
-    </p>
-
-    <!--Link to the Respository.-->
-    <p class="lead text-dark">Check out the <a href="https://github.com/SWE-Application-Domain-Group-5/CredPanda-DomainApp" class="link-info">GitHub Repository!</a></p>
-
     <a class="btn btn-info rounded-pill btn-lg" href="/Identity/Account/Register" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click Here to Get Started with CredPanda" role="button">Get Started</a>
 </div>
 
 
 
+<!--Dashboard-->
+<h1>Dashboard</h1>
+<div class="container">
+    <hr class="bg-info border-2 border-info">
+</div>
+
+
 <!--Display Journal: Pending, Approval, Declined-->
-
-
-
 <!--Third-->
-@foreach (var item in EntryModel)
+<h3>Journal Entries:</h3>
+@foreach (var item in Model)
 {
     @if (item.state == EntryState.APPROVED && item.state == EntryState.DECLINED)
     {
@@ -34,21 +38,16 @@
     }
     else if (item.state == EntryState.PENDING)
     {
-
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.state)
-            </td>
-        </tr>
-
+                
+                <ul class="list-inline">
+                @Html.DisplayFor(modelItem => item.state) Entry: 
+                <a asp-controller="Entry" asp-action="Details" style="color:black;" asp-route-id="@item.Id"> Look at Entry </a>
+                </ul>
     }
 }
 
-<!--Dashboard-->
-<div class="container">
-    <h1 class="text-dark">Dashboard</h1>
-    <hr class="bg-info border-2 border-info">
-</div>
+<!--Esther says: let me see and i can tell you want to change-->
+<!--Rasul says: Under Live Share, click on my name. Or go to Share-->
 
 
 

@@ -7,16 +7,13 @@
     color: white;
 }
 
-
 /*Home-Item-User-Role-Journal-Help Link Font/Boldness/Position*/
 .nav-item {
     position: center;
     font-weight: 400;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+    color: black;
 }
-
-
 
 /*For the Jumbotron-"Welcome to CredPanda - Check out the Github Repos"*/
 .jumbotron {
@@ -30,11 +27,7 @@ body {
 }
 
 
-
-
-
 /*Image*/
-
 .top1 img{
  max-height: 500%;
  display: block;
@@ -43,5 +36,3 @@ body {
 .hi1{
     height: 55px;
 }
-
-

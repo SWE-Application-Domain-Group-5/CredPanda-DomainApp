@@ -4,9 +4,19 @@
     ViewData["Title"] = "Edit Account";
 }
 
-<h1>Edit Account</h1>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    }
+</style>
 
-<h4>AccountModel</h4>
+<h1 class="link-light">Edit Account</h1>
+
+<h4 class="link-light">AccountModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,57 +24,57 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="AccountName" class="control-label"></label>
+                <label asp-for="AccountName" class="control-label link-light"></label></label>
                 <input asp-for="AccountName" class="form-control" />
                 <span asp-validation-for="AccountName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountNumber" class="control-label"></label>
+                <label asp-for="AccountNumber" class="control-label link-light"></label>
                 <input asp-for="AccountNumber" class="form-control" readonly/>
                 <span asp-validation-for="AccountNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountDescription" class="control-label"></label>
+                <label asp-for="AccountDescription" class="control-label link-light"></label>
                 <input asp-for="AccountDescription" class="form-control" />
                 <span asp-validation-for="AccountDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountType" class="control-label">Type of Account</label>
-                <select asp-for="AccountType" class="form-control" asp-items="Html.GetEnumSelectList<AccountType>()"></select>
+                <label asp-for="AccountType" class="control-label link-light">Type of Account</label>
+                <select asp-for="AccountType" class="form-select" asp-items="Html.GetEnumSelectList<AccountType>()"></select>
             </div>
             <div class="form-group">
-                <label asp-for="AccountCategory" class="control-label"></label>
-                <select asp-for="AccountCategory" class="form-control" asp-items="Html.GetEnumSelectList<AccountCategory>()"></select>
+                <label asp-for="AccountCategory" class="control-label link-light"></label>
+                <select asp-for="AccountCategory" class="form-select" asp-items="Html.GetEnumSelectList<AccountCategory>()"></select>
                 <span asp-validation-for="AccountCategory" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountSubcategory" class="control-label"></label>
+                <label asp-for="AccountSubcategory" class="control-label link-light"></label>
                 <input asp-for="AccountSubcategory" class="form-control" />
                 <span asp-validation-for="AccountSubcategory" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountInitialBalance" class="control-label"></label>
+                <label asp-for="AccountInitialBalance" class="control-label link-light"></label>
                 <input asp-for="AccountInitialBalance" class="form-control" readonly/>
                 <span asp-validation-for="AccountInitialBalance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountCurrentBalance" class="control-label"></label>
+                <label asp-for="AccountCurrentBalance" class="control-label link-light"></label>
                 <input asp-for="AccountCurrentBalance" class="form-control" readonly />
                 <span asp-validation-for="AccountCurrentBalance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountCreationTime" class="control-label"></label>
+                <label asp-for="AccountCreationTime" class="control-label link-light"></label>
                 <input asp-for="AccountCreationTime" class="form-control" readonly/>
                 <span asp-validation-for="AccountCreationTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountOrder" class="control-label"></label>
+                <label asp-for="AccountOrder" class="control-label link-light"></label>
                 <input asp-for="AccountOrder" class="form-control" readonly />
                 <span asp-validation-for="AccountOrder" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AccountStatement" class="control-label"></label>
-                <select asp-for="AccountStatement" class="form-control" asp-items="Html.GetEnumSelectList<Statement>()"></select>
+                <label asp-for="AccountStatement" class="control-label link-light"></label>
+                <select asp-for="AccountStatement" class="form-select" asp-items="Html.GetEnumSelectList<Statement>()"></select>
                 <span asp-validation-for="AccountStatement" class="text-danger"></span>
             </div>
             <div class="form-group">

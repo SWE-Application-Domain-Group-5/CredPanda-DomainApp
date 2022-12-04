@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "All Roles";
+    //Layout = "_Layout.cshtml";
 }
 
 <h1>All Roles</h1>
@@ -19,7 +20,7 @@
                 Role Id : @role.Id
             </div>*@
             <div class="card-body">
-                <h5 class="card-title">@role.Name</h5>
+                <h5 class="card-title link-dark">@role.Name</h5>
             </div>
             <div class="card-footer">
                 <a asp-controller="role" asp-action="EditRole"
