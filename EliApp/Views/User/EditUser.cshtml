@@ -82,19 +82,19 @@
 
     <div class="card">
         <div class="card-header">
-            <h3>User Roles</h3>
+            <h3 class="link-dark">User Roles</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body link-dark">
             @if(Model.Roles.Any())
             {
                 foreach(var role in Model.Roles)
                 {
-                    <h5 class="card-title">@role</h5>
+                    <h5 class="card-title link-dark">@role</h5>
                 }
             }
             else
             {
-                <h5 class="card-title">None at the moment</h5>
+                <h5 class="card-title link-dark">None at the moment</h5>
             }
         </div>
         <div class="card-footer">

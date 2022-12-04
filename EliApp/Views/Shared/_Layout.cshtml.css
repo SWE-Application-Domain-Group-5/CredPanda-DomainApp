@@ -5,7 +5,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /*Full Website: Font and Margin*/
 * {
-    color: white;
+    color: black;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -15,7 +15,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /*Home-Item-User-Role-Journal-Help Link Font/Boldness/Position*/
 .nav-item {
-    color: white;
+    color: black;
     position: center;
     font-weight: 600;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -30,13 +30,13 @@ button.accept-policy {
 
 
 /*Footer: CredPanda @Kennesaw - Application Domain 2022*/
-.footer {
+#footer {
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
-    line-height:22px;
+    line-height:30px;
 }
 
 
@@ -72,7 +72,7 @@ button.accept-policy {
     color: #4982b6;
 }
 
-.navbar-toggler: focus {
+.navbar-toggler {
     outline: none;
     box-shadow: none;
     color: #4982b6;
@@ -95,7 +95,22 @@ button.accept-policy {
         color: black;
     }
 
-
+/*Roles*/
+.card-header{
+    color: black;
+    }
+    
+    .card-body{
+        color: black;
+    }
+    
+    .card-footer{
+        color: black;
+    }
+    
+    .card{
+        color:black;
+    }
 
 
 

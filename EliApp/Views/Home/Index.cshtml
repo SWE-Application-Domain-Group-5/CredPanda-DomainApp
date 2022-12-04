@@ -1,4 +1,4 @@
-﻿@inject IEnumerable<EliApp.Models.EntryModel> EntryModel
+@model IEnumerable<EliApp.Models.EntryModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -6,64 +6,60 @@
 
 
 <!--Jumbotron: Gibhub Repository-->
+<h1>Welcome to CredPanda</h1>
+<p class="lead front-page link-dark">
+    CredPanda is here to make it easier for you.
+</p>
+
+<!--Link to the Respository.-->
+<p class="lead">Check out the <a href="https://github.com/SWE-Application-Domain-Group-5/CredPanda-DomainApp" class="link-info">GitHub Repository!</a></p>
 
 <div class="container">
-    <h1 class="text-dark">Welcome to CredPanda</h1>
-    <p class="lead">
-        CredPanda is here to make it easier for you.
-    </p>
-    <!--Link to the Respository.-->
-    <p class="lead text-dark">Check out the <a href="https://github.com/SWE-Application-Domain-Group-5/CredPanda-DomainApp" class="link-info">GitHub Repository!</a></p>
-
     <a class="btn btn-info rounded-pill btn-lg" href="/Identity/Account/Register" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click Here to Get Started with CredPanda" role="button">Get Started</a>
 </div>
 
 
 
-
 <!--Dashboard-->
+<h1>Dashboard</h1>
 <div class="container">
-    <h1 class="text-dark">Dashboard</h1>
     <hr class="bg-info border-2 border-info">
+</div>
 
 
-
-    <!--Display Journal: Pending, Approval, Declined-->
-
-    @foreach (var item in EntryModel)
+<!--Display Journal: Pending, Approval, Declined-->
+<!--Third-->
+<h3>Journal Entries:</h3>
+@foreach (var item in Model)
+{
+    @if (item.state == EntryState.APPROVED && item.state == EntryState.DECLINED)
     {
-        int count = 0;
-        if(item.state == EntryState.PENDING)
-        {
-            count += 1;
-            <div>There is @count entries pending</div>
-        }
+        <p>There are no pending journal entries.</p>
     }
+    else if (item.state == EntryState.PENDING)
+    {
+        
+        <ul class="list-inline">
+        @Html.DisplayFor(modelItem => item.state) Entry: 
+        <a asp-controller="Entry" asp-action="Details" style="color:black;" asp-route-id="@item.Id"> Look at Entry </a>
+        </ul>
+    }
+}
+<p></p>
+<div></div>
+<div></div>
 
+<!--Landing Page: Animated Image-->
 
-@*
-    @{
-        if (Model.state == EntryState.PENDING) {
-            
-        <p>Journal Entry is: </p>
-        <a asp-action="Pending" asp-route-id="@Model.state" type="submit" class="btn btn-primary">Pending</a>
-            }else{
- <p>There are no Pending Journal Entries</p>
-                }
-            }
-        }*@
-
-    <!--Landing Page: Animated Image-->
-
-    <div class="position-absolute top-1 end-0 translate-middle-y">
-        <div class="top1">
-            <div class="row">
-                <div class="hi1">
-                    <img src="https://www.pngitem.com/pimgs/b/175-1751228_ecommerce-images-png.png" class="img-responsive " alt="">
-                </div>
+<div class="position-absolute top-1 end-0 translate-middle-y">
+    <div class="top1">
+        <div class="row">
+            <div class="hi1">
+                <img src="https://www.pngitem.com/pimgs/b/175-1751228_ecommerce-images-png.png" class="img-responsive " alt="">
             </div>
         </div>
     </div>
+</div>
 
 
 

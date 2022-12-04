@@ -5,26 +5,23 @@
     var roles = (List<IdentityRole>)ViewData["roles"];
 }
 
-
-<!--CredPanda Logo Bar-->
-<nav class="navbar navbar-expand-lg navbar-white bg-white">
-    <a href="# class="navbar-brand mb-0 h1">
-        <!--Tool Tip: CredPanda Logo-->
-        <span class="tt" data-bs-placement="bottom" title="CredPanda">
-            <img class="d-inline-block align-top"
-                 src="~/images/CredPanda Logo.png" width="165" height="150" />
-    </a>
-    </span>
-
-</nav>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    }
+</style>
 
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="link-light">@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
-            <h2>Create a new account.</h2>
+            <h2 class="link-light">Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -48,8 +45,8 @@
                 <label asp-for="Input.DOB"></label>
                 <span asp-validation-for="Input.DOB" class="text-danger"></span>
             </div>
-            <div class="form-group" formnovalidate="formnovalidate" accept=".png,.jpg,.jpeg,.gif">
-                Upload Profie Picture: <input type="file" asp-for="Upload" />
+            <div class="form-group link-light" formnovalidate="formnovalidate" accept=".png,.jpg,.jpeg,.gif">
+                Upload Profie Picture: <input type="file" asp-for="Upload" class="link-light"/>
             </div>
 
             <div class="form-floating">

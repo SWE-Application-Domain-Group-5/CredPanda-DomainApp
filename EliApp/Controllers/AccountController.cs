@@ -188,11 +188,20 @@ namespace EliApp.Controllers
             var accountModel = await _context.AccountModel.FindAsync(id);
             if (accountModel != null)
             {
-                _context.AccountModel.Remove(accountModel);
+                if(accountModel.AccountCurrentBalance != 0)
+                {
+                    ViewBag.ErrorTitle = "Nonzero Account Deletion Error";
+                    ViewBag.ErrorMessage = "The account you tried to delete is not an empty account, so it cannot be deleted." +
+                    " Please empty the account of all financial assets, then try deleting it again.";
+                    return View("Error");
+                }
+                else
+                {
+                    _context.AccountModel.Remove(accountModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool AccountModelExists(int id)
