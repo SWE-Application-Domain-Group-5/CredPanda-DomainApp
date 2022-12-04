@@ -1,5 +1,6 @@
 ﻿@inject IEnumerable<EliApp.Models.EntryModel> EntryModel
 
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -20,50 +21,59 @@
 
 
 
+<!--Display Journal: Pending, Approval, Declined-->
+
+
+<!--Second-->
+@foreach(var item in EntryModel)
+{
+        <div class="col-md-12">
+            <form method="post">
+                <div>
+                    <span class="title">@Html.DisplayFor(modelItem => item.state)</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (item.state == EntryState.APPROVED && item.state == EntryState.DECLINED)
+                        {
+
+
+
+                            <p>There are no pending journal entries.</p>
+                        }
+                        else
+                        {
+
+                            @Html.DisplayFor(modelItem => item.state)
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+}
+
 
 <!--Dashboard-->
 <div class="container">
     <h1 class="text-dark">Dashboard</h1>
     <hr class="bg-info border-2 border-info">
+</div>
 
 
 
-    <!--Display Journal: Pending, Approval, Declined-->
 
-    @foreach (var item in EntryModel)
-    {
-        int count = 0;
-        if(item.state == EntryState.PENDING)
-        {
-            count += 1;
-            <div>There is @count entries pending</div>
-        }
-    }
+<!--Landing Page: Animated Image-->
 
-
-@*
-    @{
-        if (Model.state == EntryState.PENDING) {
-            
-        <p>Journal Entry is: </p>
-        <a asp-action="Pending" asp-route-id="@Model.state" type="submit" class="btn btn-primary">Pending</a>
-            }else{
- <p>There are no Pending Journal Entries</p>
-                }
-            }
-        }*@
-
-    <!--Landing Page: Animated Image-->
-
-    <div class="position-absolute top-1 end-0 translate-middle-y">
-        <div class="top1">
-            <div class="row">
-                <div class="hi1">
-                    <img src="https://www.pngitem.com/pimgs/b/175-1751228_ecommerce-images-png.png" class="img-responsive " alt="">
-                </div>
+<div class="position-absolute top-1 end-0 translate-middle-y">
+    <div class="top1">
+        <div class="row">
+            <div class="hi1">
+                <img src="https://www.pngitem.com/pimgs/b/175-1751228_ecommerce-images-png.png" class="img-responsive " alt="">
             </div>
         </div>
     </div>
+</div>
 
 
 
