@@ -5,7 +5,10 @@
     float total = 0;
     foreach(var item in Model)
     {
-        total += item.amount;
+        if(item.state != EntryState.PENDING) 
+        {
+            total += item.amount;
+        }
     }
 }
 @using (Html.BeginForm())
@@ -24,7 +27,7 @@
 
 
 <p>
-    <a asp-action="Create">Write New Entry</a>
+    <a asp-action="Create" class="btn btn-primary mb-3" style="width:auto">Write New Entry</a>
 </p>
 <table class="table">
     <thead>
@@ -60,7 +63,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Id) </a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="link-info">@Html.DisplayFor(modelItem => item.Id) </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateTime)
@@ -84,7 +87,7 @@
                 -@item.amount.ToString("C")
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">View Entry</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">View Entry</a>
             </td>
         </tr>
 }
@@ -107,7 +110,6 @@
                 <td> -@balanceTotal.ToString("C") </td>
             }
             <td></td>
-            
         </tr>
     </tbody>
 </table>

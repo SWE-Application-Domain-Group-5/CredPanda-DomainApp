@@ -30,14 +30,13 @@ button.accept-policy {
 
 
 /*Footer: CredPanda @Kennesaw - Application Domain 2022*/
-.footer {
+#footer {
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
-    line-height:22px;
-
+    line-height:30px;
 }
 
 
@@ -73,7 +72,7 @@ button.accept-policy {
     color: #4982b6;
 }
 
-.navbar-toggler: focus {
+.navbar-toggler {
     outline: none;
     box-shadow: none;
     color: #4982b6;

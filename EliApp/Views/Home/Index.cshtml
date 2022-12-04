@@ -38,19 +38,16 @@
     }
     else if (item.state == EntryState.PENDING)
     {
-                
-                <ul class="list-inline">
-                @Html.DisplayFor(modelItem => item.state) Entry: 
-                <a asp-controller="Entry" asp-action="Details" style="color:black;" asp-route-id="@item.Id"> Look at Entry </a>
-                </ul>
+        
+        <ul class="list-inline">
+        @Html.DisplayFor(modelItem => item.state) Entry: 
+        <a asp-controller="Entry" asp-action="Details" style="color:black;" asp-route-id="@item.Id"> Look at Entry </a>
+        </ul>
     }
 }
-
-<!--Esther says: let me see and i can tell you want to change-->
-<!--Rasul says: Under Live Share, click on my name. Or go to Share-->
-
-
-
+<p></p>
+<div></div>
+<div></div>
 
 <!--Landing Page: Animated Image-->
 
