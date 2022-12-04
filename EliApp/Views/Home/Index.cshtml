@@ -1,5 +1,4 @@
-﻿@inject IEnumerable<EliApp.Models.EntryModel> EntryModel
-
+﻿@model IEnumerable<EliApp.Models.EntryModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -13,6 +12,7 @@
     <p class="lead">
         CredPanda is here to make it easier for you.
     </p>
+
     <!--Link to the Respository.-->
     <p class="lead text-dark">Check out the <a href="https://github.com/SWE-Application-Domain-Group-5/CredPanda-DomainApp" class="link-info">GitHub Repository!</a></p>
 
@@ -25,32 +25,30 @@
 
 
 <!--Second-->
-@foreach(var item in EntryModel)
+@foreach(var item in Model)
 {
-        <div class="col-md-12">
-            <form method="post">
-                <div>
-                    <span class="title">@Html.DisplayFor(modelItem => item.state)</span>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        @if (item.state == EntryState.APPROVED && item.state == EntryState.DECLINED)
-                        {
-
-
-
-                            <p>There are no pending journal entries.</p>
-                        }
-                        else
-                        {
-
-                            @Html.DisplayFor(modelItem => item.state)
-                        }
-                    </div>
-                </div>
-            </form>
+    <div class="col-md-12">
+        <div>
+            <span class="title">@Html.DisplayFor(modelItem => item.state)</span>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @if (item.state != EntryState.PENDING)
+                {
+
+
+
+                    <p>There are no pending journal entries.</p>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.state)
+                }
+            </div>
+        </div>
+    </div>
 }
 
 
