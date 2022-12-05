@@ -202,6 +202,10 @@ namespace EliApp.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
+            else
+            {
+                return NotFound();
+            }
         }
 
         private bool AccountModelExists(int id)
