@@ -26,6 +26,12 @@ public class EliAppUser : IdentityUser
     //Get user's generated username
     [PersonalData]
     public string? GeneratedUserName { get; set; }
+
+    [PersonalData]
+    public DateTime expireDate { get; set; }
+
+    [PersonalData]
+    public DateTime passwordChangedDate { get; set; }
     
     //Get user's activation state
     [PersonalData]

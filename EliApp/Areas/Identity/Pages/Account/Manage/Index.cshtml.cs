@@ -96,6 +96,10 @@ namespace EliApp.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             [Display(Name = "Generated UserName")]
             public string GeneratedUserName { get; set; }
+
+            [DataType(DataType.Date)]
+            [Display(Name = "Password Expiration")]
+            public DateTime expireDate { get; set; }
             public bool isActive { get; set; }
         }
 
@@ -115,6 +119,7 @@ namespace EliApp.Areas.Identity.Pages.Account.Manage
                 DOB = user.DOB,
                 ProfilePicture = user.ProfilePicture,
                 RegisterDate = user.RegisterDate,
+                expireDate = user.expireDate,
                 GeneratedUserName = user.GeneratedUserName,
                 PhoneNumber = phoneNumber,
                 isActive = user.isActive

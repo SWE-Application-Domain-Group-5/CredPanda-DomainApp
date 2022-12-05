@@ -159,6 +159,8 @@ namespace EliApp.Areas.Identity.Pages.Account
                 user.Address = Input.Address;
                 user.DOB = Input.DOB;
                 user.RegisterDate = DateTime.Now;
+                user.passwordChangedDate = DateTime.Now;
+                user.expireDate = user.passwordChangedDate.AddDays(365);
 
                 if (Upload != null)  
                 {
