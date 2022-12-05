@@ -6,9 +6,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using EliApp.ViewModels;
 using EliApp.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace EliApp.Controllers
 {
+    [Authorize(Roles = "Administrator, Manager")]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
