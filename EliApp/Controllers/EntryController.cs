@@ -117,8 +117,10 @@ namespace EliApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,DateTime,userId,account1,account2,accountType,EntryUpload,amount,state,")] EntryModel entryModel)
         {
+            entryModel.userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
+                _context.Add(entryModel);
                 entryModel.DateTime = DateTime.Today;
                 if (entryModel.EntryUpload != null)
                 {
@@ -133,10 +135,19 @@ namespace EliApp.Controllers
                 { entryModel.supportingFile = "None"; }
                 var account = await _context.AccountModel.FindAsync(Convert.ToInt32(entryModel.account2));
                 entryModel.account2 = account.AccountName;
-                _context.Add(entryModel);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
+            List<AccountModel> accountList = new List<AccountModel>();
+            accountList = (from a in _context.AccountModel select a).ToList();
+            accountList.Insert(0, new AccountModel
+            {
+                AccountName = "Select an Account",
+            });
+            ViewBag.message = accountList;
+
             return View(entryModel);
         }
 

@@ -33,15 +33,15 @@ namespace EliApp.Models
         [ValidateNever]
         public IFormFile EntryUpload { get; set; } // added
         [Display(Name = "Created by:")]
-        [Required]
+        [ValidateNever]
         public string userId { get; set; }
         [Display(Name = "Creation Date")]
         [DataType(DataType.Date)]
         public DateTime DateTime { get; set; }
         [Display(Name = "First Account")]
-        public string account1 { get; set; }
+        public string? account1 { get; set; }
         [Display(Name = "Second Account")]
-        public string account2 { get; set; }
+        public string? account2 { get; set; }
         [Display(Name = "Supporting Files")]
         [AllowNull]
         public string supportingFile { get; set; } = "";
@@ -54,7 +54,7 @@ namespace EliApp.Models
         public float amount { get; set; }
         [AllowNull]
         [Display(Name = "Comments")]
-        public string comment { get; set; } = "";
+        public string? comment { get; set; } = "";
 
         /* Testing Stuff out for right now
         protected override void OnModelCreating(ModelBuilder modelBuilder)
